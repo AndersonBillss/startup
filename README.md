@@ -1,12 +1,8 @@
-# FortuneLab - Mock Investment App
+# WarLab
 
 [My Notes](notes.md)
 
-FortuneLab is a Mock investing app designed to simulate a stock exchange environment. I will include several made-up companies with randomly changing evaluations. 
-
-When a user creates an account, they will be given a fixed amount of money to buy stocks with. The user will can head to the buy/sell stocks page, where they can see a list of companies and decide who to buy stocks from
-
-On the home page, each user will be able to see their current net worth along with their investments. On a separate page, Users will be able to see a ranking of all users in order of highest net worth to lowest net worth.
+WarLab is an ultra competetive game where players compete to see who can beat each other. 
 
 
 > [!NOTE]
@@ -23,21 +19,27 @@ On the home page, each user will be able to see their current net worth along wi
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [X] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [X] A concise and compelling elevator pitch
+- [X] Description of key features
+- [X] Description of how you will use each technology
+- [X] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-FortuneLab is a free, hands on learning experience designed to allow users to explore the world of investing. This interactive platform allows users to practice strategies and create a portfolio without any risk to their personal income. This application is a training ground for a community of beginners and experts alike, allowing them to dive into the fascinating world of investing and share insights they find along the way! 
+Have you ever gotten into an argument where you are correct and everyone else is wrong? There is now a solution. WarLab is a free, hands on experience designed to allow users to compete with each other in a meaningful way. This interactive platform allows users to practice wartime strategies and create intricate strategies to ultimately become the victor. This platform provides a method to resolve conflicts and more importantly allows us to find the supreme leader of Earth
 
 ### Design
-
 ![Design image](Login_Page.png)
-![Design image](Landing_Page.png)
+![Design image](Earn_Money_Page.png)
+![Design image](Attack_Page.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+WarLab is a strategy game about spending your soldiers wisely and clicking very fast.
+
+When a user creates an account, they will be given a fixed number of soldiers as their total life. 
+
+On the landing page, users will be able to see their current number of troops as well as tasks that allow them to build up their army.
+
+On the attack page, users can spend some of their troops to eliminate other players
 
 ```mermaid
 sequenceDiagram
@@ -48,20 +50,24 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Secure login over HTTPS
+- The feature to select a name for your kingdom
+- Ability to earn soldiers by participating in tasks such as clicking a button
+- Ability to attack another kingdom
+- Ability to defeat a kingdom and earn extra soldiers
+- A win screen for the last player standing
+- persistently stored game data
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - There will be three pages that are structured in a smart and accessible way. One page for logging in, one for earning troops, and one for attacking other kingdoms.
+- **CSS** - Style an appealing website with simple animations and a complementary color scheme, and provide support for a wide range of screen sizes.
+- **React** - Provide reactive web components, display important data, manage state, and perform simple logic.
+- **Service** - A Node.Js backend handling logic for logins and interactions between players
+- **DB/Login** - MongoDB database for storing users and important info such as their kingdom title and number of troops
+- **WebSocket** - Players are notified when they are attacked by other players
 
 ## 🚀 AWS deliverable
 
