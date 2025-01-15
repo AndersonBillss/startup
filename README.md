@@ -1,8 +1,12 @@
-# Your startup name here
+# FortuneLab - Mock Investment App
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+FortuneLab is a Mock investing app designed to simulate a stock exchange environment. I will include several made-up companies with randomly changing evaluations. 
+
+When a user creates an account, they will be given a fixed amount of money to buy stocks with. The user will can head to the buy/sell stocks page, where they can see a list of companies and decide who to buy stocks from
+
+On the home page, each user will be able to see their current net worth along with their investments. On a separate page, Users will be able to see a ranking of all users in order of highest net worth to lowest net worth.
 
 
 > [!NOTE]
@@ -18,7 +22,7 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
+- [X] Proper use of Markdown
 - [ ] A concise and compelling elevator pitch
 - [ ] Description of key features
 - [ ] Description of how you will use each technology
@@ -26,11 +30,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+FortuneLab is a free, hands on learning experience designed to allow users to explore the world of investing. This interactive platform allows users to practice strategies and create a portfolio without any risk to their personal income. This application is a training ground for a community of beginners and experts alike, allowing them to dive into the fascinating world of investing and share insights they find along the way! 
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](Login_Page.png)
+![Design image](Landing_Page.png)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
