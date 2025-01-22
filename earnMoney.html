@@ -6,17 +6,22 @@
     <title>War Lab</title>
 </head>
 <body>
-    <nav>
-        <a href="/index.html">Login</a>
-        <a href="/earnMoney.html">Earn Money</a>
-        <a href="/attack.html">Attack</a>
-        <a href="/about.html">About</a>
-    </nav>
-    <h1>War Lab</h1>    
-    <h2>Earn Money</h2>
-    <p id="soldiers">Soldiers: </p>
-    <button id="soldierButton">Click to recruit soldiers</div>
+    <header>
+        <nav>
+            <a href="/index.html">Login</a>
+            <a href="/earnMoney.html">Earn Money</a>
+            <a href="/attack.html">Attack</a>
+            <a href="/about.html">About</a>
+        </nav>
+        <h1>War Lab</h1>    
+        <h2>Earn Money</h2>
+    </header>
 
+    <p id="soldiers">Soldiers: </p>
+    <button id="soldierButton" style="display: flex; flex-direction: column;">
+        Click to recruit soldiers
+        <img style="width: 150px" src="coin.webp"/>
+    </button>
     <script>
         let n = 0
         function click(){
@@ -26,5 +31,9 @@
         }
         document.getElementById("soldierButton").addEventListener("click", click)
     </script>
+
+    <footer>
+        <a href="https://github.com/AndersonBillss" target="_blank">My Github</a>
+    </footer>
 </body>
 </html>
