@@ -79,15 +79,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [X] **HTML pages** - I have four four HTML pages.
+- [X] **Proper HTML element usage** - Use tables, headers, footers, and nav properly.
+- [X] **Links** - I have links to different pages and to my Github account.
+- [X] **Text** - I have an about page with some text.
+- [X] **3rd party API placeholder** - I did not complete this part of the deliverable.
+- [X] **Images** - I use several cool images in my HTML
+- [X] **Login placeholder** - I have login inputs and labels on my home page.
+- [X] **DB data placeholder** - Username, Password, Kingdom name, and Kingdom background will be stored in database.
+- [X] **WebSocket placeholder** - Recieve updates in real time about how many soldiers people have.
 
 ## 🚀 CSS deliverable
 
