@@ -19,6 +19,19 @@ body, html{
     margin: 0;
     border: 0;
 }
+
+label{
+    font-size: 16px;
+    margin-top: 20px;
+}
+input{
+    padding: 10px;
+    margin: 10px 5px;
+    border-bottom: 3px var(--gray-dark) solid;
+    background-color: var(--gray-light);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
 .container{
     display: flex;
     flex-direction: column;
@@ -27,7 +40,7 @@ body, html{
 header{
     display: flex;
     flex-direction: column;
-    width:100vw;
+    width:100%;
 }
 footer{
     display: flex;
@@ -45,11 +58,15 @@ footer *{
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
+    padding: 15px 50px;
 }
 .icon{
     height: 20px;
     margin: 0 5px;
     width: auto;
+}
+.center{
+    text-align: center;
 }
 .button{
     display: flex;
@@ -83,6 +100,7 @@ footer *{
 .title{
     font-size: 36px;
     padding: 0 15px;
+    margin-bottom: 15px;
 }
 .underlined{
     border-bottom: 2px var(--gray-dark) solid;
@@ -96,7 +114,6 @@ footer *{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding: 20px;
     margin-bottom: 50px;
     background-color: var(--gray-light);
 }
@@ -111,6 +128,28 @@ footer *{
     flex-grow: 3;
 }
 
+.attack-table{
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    border-top: 2px var(--gray-dark) solid;
+}
+.table-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px var(--gray-dark) solid;
+}
+.table-img{
+    width: 40px;
+    height: auto;
+    transform: rotate(180deg); 
+}
+
+#soldiers{
+    font-size: 24px;
+    margin: 15px;
+}
 
 
 
@@ -123,5 +162,8 @@ footer *{
     .nav-bottom *{
         display: flex;
         text-align: center;
+    }
+    .page{
+        padding: 30px;
     }
 }
