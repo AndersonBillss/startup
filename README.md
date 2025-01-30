@@ -77,8 +77,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ## 🚀 HTML deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed. I added four plain HTML pages that show the structure of my startup application. I used correct elements to display information and I 
-put placeholders for API information, database information, and websocket information.
+For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed. I
 - [X] **HTML pages** - I have four four HTML pages.
 - [X] **Proper HTML element usage** - Use tables, headers, footers, and nav properly.
 - [X] **Links** - I have links to different pages and to my Github account.
