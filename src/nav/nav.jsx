@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import '../styles.css'
 
 export default function Navbar(){
@@ -6,16 +7,16 @@ export default function Navbar(){
         <header>
             <nav className="nav">
                 <div className="nav-top">
-                    <a className="title button" href="/index.html">
+                    <NavLink className="title button" href="/index.html">
                         <span className="primary-color">War</span>
                         <span className="secondary-color">Lab</span>
-                    </a>
+                    </NavLink>
                 </div>
                 <div className="nav-bottom">
-                    <a className="button" href="/index.html">Login</a>
-                    <a className="button"  href="/earnMoney.html">Earn Money</a>
-                    <a className="button"  href="/attack.html">Attack</a>
-                    <a className="button"  href="/about.html">About</a>
+                    <NavLink className="button" to="/">Login</NavLink>
+                    <NavLink className="button" to="/earnMoney">Earn Money</NavLink>
+                    <NavLink className="button" to="/attack">Attack</NavLink>
+                    <NavLink className="button" to="/about">About</NavLink>
                 </div>
             </nav>
         </header>

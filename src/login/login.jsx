@@ -1,7 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import '../styles.css'
 
 export default function Login(){
+    const navigate = useNavigate();
+
     return (
     <div className="page">
         <div className="main underlined title">
@@ -17,7 +21,7 @@ export default function Login(){
         <label>Password</label>
         <input placeholder="Password" type="password"/>
 
-        <a className="button" href="/earnMoney.html">Login</a>
+        <NavLink className="button" to={'/earnMoney'}>Login</NavLink>
     </div>
     )
 }
