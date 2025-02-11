@@ -20,3 +20,7 @@ put placeholders for API information, database information, and websocket inform
 ## CSS Notes
 
 I had a lot of fun using CSS. I take full advantage of the power of Flexbox and I use custom properties to keep my styling consistent. I also added hover effects to buttons, making them appear darker and setting the cursor to a pointer. I used media rules to adjust the website for several different screen sizes. I love styling websites and I can see how powerful flex is.
+
+## React Part 1 Notes
+
+Adding React to my project was straightforward. I like that I can reuse and import components so I don't have to duplicate HTML like when I had to in the HTML deliverable. This feels much more structured. It also got me ready to add JavaScript to my application.
