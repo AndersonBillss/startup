@@ -1,0 +1,32 @@
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './styles.css'
+
+import Navbar from './nav/nav';
+import Footer from './footer/footer';
+
+import EarnMoney from './earnMoney/earnMoney';
+import Attack from './attack/attack';
+import About from './about/about';
+import Login from './login/login';
+
+export default function app(){
+    return(
+        <BrowserRouter>
+            <div className="container">
+                <Navbar></Navbar>
+                {/* <EarnMoney></EarnMoney> */}
+                {/* <Attack></Attack> */}
+                {/* <About></About> */}
+                {/* <Login></Login> */}
+                <Routes>
+                    <Route path='/' Component={Login}></Route>
+                    <Route path='/earnMoney' Component={EarnMoney}></Route>
+                    <Route path='/about' Component={About}></Route>
+                    <Route path='/attack' Component={Attack}></Route>
+                </Routes>
+                <Footer></Footer>
+            </div>
+        </BrowserRouter>
+    )
+}
