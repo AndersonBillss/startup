@@ -15,10 +15,6 @@ export default function app(){
         <BrowserRouter>
             <div className="container">
                 <Navbar></Navbar>
-                {/* <EarnMoney></EarnMoney> */}
-                {/* <Attack></Attack> */}
-                {/* <About></About> */}
-                {/* <Login></Login> */}
                 <Routes>
                     <Route path='/' Component={Login}></Route>
                     <Route path='/earnMoney' Component={EarnMoney}></Route>

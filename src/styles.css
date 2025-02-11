@@ -42,17 +42,6 @@ header{
     flex-direction: column;
     width:100%;
 }
-footer{
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    background-color: var(--gray-dark);
-}
-footer *{
-    color: var(--gray-light);
-    display: flex;
-    align-items: center;
-}
 .column{
     display: flex;
     flex-direction: column;
@@ -113,60 +102,7 @@ footer *{
     margin-bottom: 50px;
 }
 
-.nav{
-    flex-grow: 1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-bottom: 50px;
-    background-color: var(--gray-light);
-}
-.nav-top{
-    justify-content: center;
-    display: flex;
-    flex-grow: 1;
-}
-.nav-bottom{
-    display: flex;
-    justify-content:space-around ;
-    flex-grow: 3;
-}
-
-.attack-table{
-    display: flex;
-    flex-direction: column;
-    margin-top: 25px;
-    border-top: 2px var(--gray-dark) solid;
-}
-.table-row{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 2px var(--gray-dark) solid;
-}
-.table-img{
-    width: 40px;
-    height: auto;
-    transform: rotate(180deg); 
-}
-
-#soldiers{
-    font-size: 24px;
-    margin: 15px;
-}
-
-
-
 @media(max-width: 350px){
-    .nav-bottom{
-        display: grid;
-        grid-template-columns: 100px auto;
-        grid-template-rows: 40px auto;
-    }
-    .nav-bottom *{
-        display: flex;
-        text-align: center;
-    }
     .page{
         padding: 30px;
     }

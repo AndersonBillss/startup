@@ -4,8 +4,6 @@ import { NavLink } from "react-router-dom";
 import '../styles.css'
 
 export default function Login(){
-    const navigate = useNavigate();
-
     return (
     <div className="page">
         <div className="main underlined title">

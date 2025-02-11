@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles.css'
+import './attack.css'
 
 export default function Attack(){
     return(
