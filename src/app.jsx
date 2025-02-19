@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './styles.css'
 
@@ -10,11 +10,9 @@ import Attack from './attack/attack';
 import About from './about/about';
 import Login from './login/login';
 
-import { SoldiersStateProvider } from './utils/SoldiersContext';
+import { SoldiersStateProvider } from './utils/context/SoldiersContext';
 
 export default function app(){
-    // const [numSoldiers, setNumSoldiers] = useState(null);
-    // const Context = useContext(createContext(null))
 
     return(
         <SoldiersStateProvider>

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import '../styles.css'
 import './earnMoney.css'
-import { useSoldiers } from "../utils/SoldiersContext";
+import { useSoldiers } from "../utils/context/SoldiersContext";
 
 export default function EarnMoney(){
     const { numSoldiers, setNumSoldiers } = useSoldiers()

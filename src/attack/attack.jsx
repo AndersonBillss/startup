@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles.css'
 import './attack.css'
-import { useSoldiers } from "../utils/SoldiersContext";
+import { useSoldiers } from "../utils/context/SoldiersContext";
 
 export default function Attack(){
     const { numSoldiers } = useSoldiers()
