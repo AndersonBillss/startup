@@ -1,4 +1,4 @@
-import { setLoggedIn, setUsername } from "../storage/localStorage"
+import { getLoggedIn, setLoggedIn, setUsername } from "../storage/localStorage"
 
 export async function login(username, password){
     console.log(`Logging in: ${username}, ${password}`) // API call here
@@ -11,8 +11,12 @@ export async function login(username, password){
 }
 
 export async function logout(){
-    console.log("Logging out") // API call here
+    console.log("Logging out...") // API call here
     setUsername("")
     setLoggedIn(false)
     return true
+}
+
+export function ensureLoggedIn(){
+    return getLoggedIn()
 }

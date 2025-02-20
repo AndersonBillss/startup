@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../utils/api/auth";
 import '../styles.css'
+import { getLoggedIn } from "../utils/storage/localStorage";
 
 export default function Login(){
     const [username, setUsername] = useState("")
@@ -12,13 +13,19 @@ export default function Login(){
 
     const navigate = useNavigate()
 
+    useEffect(() => {
+        if(getLoggedIn()){
+            navigate("/home")
+        }
+    })
+
     function handleLoginClick(username, password){
         if(checkForInputError()){
             return
         }
         login(username, password).then(success => {
             if(success){
-                navigate("/earnMoney")
+                navigate("/home")
             }
         })
     }
