@@ -14,7 +14,7 @@ import { ensureLoggedIn } from './utils/api/auth';
 
 const ProtectedRoute = ({ children }) => {
     const navigate = useNavigate()
-    if(!ensureLoggedIn){
+    if(!ensureLoggedIn()){
         navigate("/login")
     }
     return children;
