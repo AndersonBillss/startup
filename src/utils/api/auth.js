@@ -18,5 +18,6 @@ export async function logout(){
 }
 
 export function ensureLoggedIn(){
+    console.log("checking if logged in")
     return getLoggedIn()
 }

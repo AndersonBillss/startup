@@ -1,5 +1,6 @@
 import React from "react"
-import Navbar from "../nav/nav"
+import Navbar from "../../shared/nav/nav"
+import '../../../styles.css'
 
 export default function Home(){
     return(

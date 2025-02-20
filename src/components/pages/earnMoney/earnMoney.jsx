@@ -1,9 +1,9 @@
 import React from "react";
-import '../styles.css'
+import '../../../styles.css'
 import './earnMoney.css'
-import { useSoldiers } from "../utils/components/SoldiersContext";
-import { getUsername } from "../utils/storage/localStorage";
-import Navbar from "../nav/nav"
+import { useSoldiers } from "../../../utils/context/SoldiersContext";
+import { getUsername } from "../../../utils/storage/localStorage";
+import Navbar from "../../shared/nav/nav"
 
 export default function EarnMoney(){
     const { numSoldiers, setNumSoldiers } = useSoldiers()

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../utils/api/auth";
-import '../styles.css'
-import { getLoggedIn } from "../utils/storage/localStorage";
+import { login } from "../../../utils/api/auth";
+import '../../../styles.css'
+import { getLoggedIn } from "../../../utils/storage/localStorage";
 
 export default function Login(){
     const [username, setUsername] = useState("")
