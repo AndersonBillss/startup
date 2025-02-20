@@ -8,13 +8,12 @@ export default function Navbar(){
         <header>
             <nav className="nav">
                 <div className="nav-top">
-                    <NavLink className="title button" href="/index.html">
+                    <NavLink className="title button" to="/home">
                         <span className="primary-color">War</span>
                         <span className="secondary-color">Lab</span>
                     </NavLink>
                 </div>
                 <div className="nav-bottom">
-                    <NavLink className="button" to="/">Login</NavLink>
                     <NavLink className="button" to="/earnMoney">Earn Money</NavLink>
                     <NavLink className="button" to="/attack">Attack</NavLink>
                     <NavLink className="button" to="/about">About</NavLink>

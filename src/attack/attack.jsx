@@ -2,12 +2,13 @@ import React from "react";
 import '../styles.css'
 import './attack.css'
 import { useSoldiers } from "../utils/context/SoldiersContext";
+import { getUsername } from "../utils/storage/localStorage";
 
 export default function Attack(){
     const { numSoldiers } = useSoldiers()
     return(
         <div className="page">
-        <div className="main title">Username</div>   
+        <div className="main title">{getUsername()}</div>   
         <p>Current Soldiers: {numSoldiers}</p>         
 
         <h2 className="title center">Attack</h2>

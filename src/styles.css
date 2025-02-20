@@ -98,6 +98,9 @@ header{
 .underlined{
     border-bottom: 2px var(--gray-dark) solid;
 }
+.error{
+    color: red;
+}
 .main.title{
     margin-bottom: 50px;
 }

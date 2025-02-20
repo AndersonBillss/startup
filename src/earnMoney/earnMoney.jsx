@@ -2,12 +2,13 @@ import React from "react";
 import '../styles.css'
 import './earnMoney.css'
 import { useSoldiers } from "../utils/context/SoldiersContext";
+import { getUsername } from "../utils/storage/localStorage";
 
 export default function EarnMoney(){
     const { numSoldiers, setNumSoldiers } = useSoldiers()
     return(
         <div className="page">
-            <div className="main title">Welcome, Username!</div> 
+            <div className="main title">Welcome, {getUsername()}!</div> 
             <h2 className="title center">Earn Money</h2>
             <div className="center">[Use third party API to allow users to select the photo for their civilization]</div>
             <div className="center">[kingdom name and background image will be stored in a database]</div>

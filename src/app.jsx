@@ -9,10 +9,13 @@ import EarnMoney from './earnMoney/earnMoney';
 import Attack from './attack/attack';
 import About from './about/about';
 import Login from './login/login';
+import Home from './home/home';
 
 import { SoldiersStateProvider } from './utils/context/SoldiersContext';
 
 export default function app(){
+
+
 
     return(
         <SoldiersStateProvider>
@@ -20,7 +23,8 @@ export default function app(){
                 <div className="container">
                     <Navbar></Navbar>
                     <Routes>
-                        <Route path='/' Component={Login}></Route>
+                        <Route path='/login' Component={Login}></Route>
+                        <Route path='/home' Component={Home}></Route>
                         <Route path='/earnMoney' Component={EarnMoney}></Route>
                         <Route path='/about' Component={About}></Route>
                         <Route path='/attack' Component={Attack}></Route>
