@@ -9,6 +9,7 @@
 }
 .nav-top{
     justify-content: center;
+    align-items: center;
     display: flex;
     flex-grow: 1;
 }
@@ -16,6 +17,10 @@
     display: flex;
     justify-content:space-around ;
     flex-grow: 3;
+}
+.title.button{
+    align-items: center;
+    margin: 5px 15px
 }
 
 @media(max-width: 350px){
