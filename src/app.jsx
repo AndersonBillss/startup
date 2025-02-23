@@ -9,6 +9,7 @@ import About from './components/pages/about/about';
 import Login from './components/pages/login/login';
 import Home from './components/pages/home/home';
 import PageNotFound from './components/pages/pageNotFound/pageNotFound';
+import Game from './components/pages/game/game';
 
 import { SoldiersStateProvider } from './utils/context/SoldiersContext';
 import { ensureLoggedIn } from './utils/api/auth';
@@ -27,6 +28,7 @@ export default function app(){
                         <Route path='/earnMoney' element={<ProtectedRoute><EarnMoney /></ProtectedRoute>} />
                         <Route path='/about' element={<ProtectedRoute><About /></ProtectedRoute>} />
                         <Route path='/attack' element={<ProtectedRoute><Attack /></ProtectedRoute>} />
+                        <Route path='/game/:selctedGame' element={<ProtectedRoute><Game /></ProtectedRoute>} />
                         <Route path='/*' element={<PageNotFound />} />
                     </Routes>
                     <Footer></Footer>

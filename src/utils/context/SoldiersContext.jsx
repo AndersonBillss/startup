@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getSoldiers, setSoldiers } from '../api/soldiersService';
+import { getPlayerData, setPlayerData } from '../cache/playerData';
 
 const SoldiersContext = createContext(null)
 
@@ -17,6 +18,7 @@ export function SoldiersStateProvider({ children }) {
     // Wrap an API call around my setNumSoldiersState function 
     const setNumSoldiers = (n) => {
       setSoldiers(n).then(soldiers => {
+        setPlayerData({...getPlayerData(), soldiers: soldiers})
         setNumSoldiersState(soldiers)
       })
     }

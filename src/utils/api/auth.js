@@ -1,3 +1,4 @@
+import { setPlayerData } from "../cache/playerData"
 import { getLoggedIn, setLoggedIn, setUsername } from "../storage/localStorage"
 
 export async function login(username, password){
@@ -5,6 +6,14 @@ export async function login(username, password){
     if(!username){
         return false
     }
+    setPlayerData({
+        id: 12489876957,
+        name: username,
+        kingomName: "",
+        unlockedGames: [],
+        soldiers: 0
+    })
+    
     setUsername(username)
     setLoggedIn(true)
     return true

@@ -58,15 +58,15 @@ export default function Login(){
         </div>
         <h2 className="title">Login</h2>
         [These will be kept in a database]
-    
-        <label>Username</label>
-        <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username"/>
-        {usernameErr && <div className="error">{usernameErr}</div>}
-    
-        <label>Password</label>
-        <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password"/>
-        {passwordErr && <div className="error">{passwordErr}</div>}
-
+        <form className="column-center"> 
+            <label>Username</label>
+            <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" autoComplete="username"/>
+            {usernameErr && <div className="error">{usernameErr}</div>}
+        
+            <label>Password</label>
+            <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" autoComplete="current-password"/>
+            {passwordErr && <div className="error">{passwordErr}</div>}
+        </form>
         <button className="button" onClick={() => {handleLoginClick(username, password)}}>Login</button>
     </div>
     )
