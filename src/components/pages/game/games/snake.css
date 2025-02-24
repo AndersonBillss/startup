@@ -1,0 +1,60 @@
+.grid{
+    display: flex;
+    flex-direction: column;
+    border: 2px gray solid;
+}
+.row{
+    display: flex;
+}
+.cell{
+    position: relative;
+    width: 4vw;
+    height: 4vw;
+    border: 2px gray solid;
+    display: flex;
+}
+
+.snake{
+    background-color: rgb(93, 165, 93);
+}
+
+.snake.body{
+    width: 100%;
+    height: 80%;
+    align-self: center;
+}
+
+.snake.head{
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    align-self: center;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.snake.tail{
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    align-self: center;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.snake.right{
+    left: 0;
+    transform: rotate(0deg);
+}
+.snake.left{
+    right: 0;
+    transform: rotate(180deg);
+}
+.snake.up{
+    bottom: 0;
+    transform: rotate(270deg);
+}
+.snake.down{
+    top: 0;
+    transform: rotate(90deg);
+}

@@ -15,7 +15,14 @@ export default function EarnMoney(){
             textColor: "black",
             unlocked: true,
             costToUnlock: 0,
-        }
+        },
+        {
+            title: "Snake",
+            backgroundColor: "#FEE698",
+            textColor: "black",
+            unlocked: true,
+            costToUnlock: 0,
+        },
     ]
     const { numSoldiers } = useSoldiers()
     return(
