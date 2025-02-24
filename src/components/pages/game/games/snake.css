@@ -7,23 +7,43 @@
     display: flex;
 }
 .cell{
-    position: relative;
-    width: 4vw;
-    height: 4vw;
+    width: 30px;
+    height: 30px;
     border: 2px gray solid;
-    display: flex;
 }
 
+.snake-container{
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 .snake{
     background-color: rgb(93, 165, 93);
+    z-index: -1;
 }
-
 .snake.body{
     width: 100%;
     height: 80%;
     align-self: center;
 }
-
+.snake.body.curved{
+    width: 90%;
+    height: 90%;
+    border-top-right-radius: 100%;
+    align-self: end;
+}
+.snake.body.curved::before {
+    content: "";
+    z-index: -2;
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    background: white;
+    border-radius: 50%;
+    top: 89%;
+    left: -10%;
+}
 .snake.head{
     position: absolute;
     width: 90%;
@@ -32,7 +52,17 @@
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
 }
-
+.snake.head::before{
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    background: black;
+    border-radius: 50%;
+    top: 50%;
+    left: 20%;
+}
 .snake.tail{
     position: absolute;
     width: 90%;
@@ -41,20 +71,27 @@
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
 }
-
-.snake.right{
-    left: 0;
+.snake-container:has(.snake.right){
+    z-index: -2;
     transform: rotate(0deg);
 }
-.snake.left{
-    right: 0;
+.snake-container:has(.snake.left){
+    z-index: -2;
     transform: rotate(180deg);
 }
-.snake.up{
-    bottom: 0;
+.snake-container:has(.snake.up){
+    z-index: -2;
     transform: rotate(270deg);
 }
-.snake.down{
-    top: 0;
+.snake-container:has(.snake.down){
+    z-index: -2;
+    transform: rotate(90deg);
+}
+.snake-container:has(.snake.horizontal){
+    z-index: -2;
+    transform: rotate(0deg);
+}
+.snake-container:has(.snake.vertical){
+    z-index: -2;
     transform: rotate(90deg);
 }
