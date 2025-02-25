@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useSoldiers } from "../../../../utils/context/SoldiersContext"
+import { usePlayerData } from "../../../../utils/context/PlayerContext"
 import "./snake.css"
 
 export default function Snake(){
-    const { numSoldiers, setNumSoldiers } = useSoldiers()
+    const { numSoldiers, setNumSoldiers } = usePlayerData()
     const gridWidth = 10
     const gridHeight = 10
     const startingSnake = [

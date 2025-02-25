@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../../utils/api/auth";
+import { usePlayerData } from "../../../utils/context/PlayerContext";
 import '../../../styles.css'
 import { getLoggedIn } from "../../../utils/storage/localStorage";
 
 export default function Login(){
+    const { login } = usePlayerData()
+
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 

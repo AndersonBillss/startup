@@ -1,7 +1,7 @@
 import React from "react";
 import '../../../styles.css'
 import './earnMoney.css'
-import { useSoldiers } from "../../../utils/context/SoldiersContext";
+import { usePlayerData } from "../../../utils/context/PlayerContext";
 import { getUsername } from "../../../utils/storage/localStorage";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../shared/nav/nav"
@@ -24,7 +24,7 @@ export default function EarnMoney(){
             costToUnlock: 75,
         },
     ]
-    const { numSoldiers } = useSoldiers()
+    const { numSoldiers } = usePlayerData()
     return(
         <>
             <Navbar></Navbar>

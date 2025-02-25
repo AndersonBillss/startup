@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { logout } from "../../../utils/api/auth";
+import { usePlayerData } from "../../../utils/context/PlayerContext";
 import '../../../styles.css'
 import './nav.css'
 
 export default function Navbar(){
+    const { logout } = usePlayerData()
     const navigate = useNavigate()
     function handleLogoutClick(){
         logout().then((success) => {

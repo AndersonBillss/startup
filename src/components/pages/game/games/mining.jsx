@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import { useSoldiers } from "../../../../utils/context/SoldiersContext"
+import { usePlayerData } from "../../../../utils/context/PlayerContext"
 
 export default function Mining(){
     const [ currentHaul, setCurrentHaul ] = useState(0)
-    const { numSoldiers, setNumSoldiers } = useSoldiers()
+    const { numSoldiers, setNumSoldiers } = usePlayerData()
 
     function handleBankClick(){
         if(currentHaul !== 0){

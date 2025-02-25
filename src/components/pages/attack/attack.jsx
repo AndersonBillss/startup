@@ -1,12 +1,12 @@
 import React from "react";
 import '../../../styles.css'
 import './attack.css'
-import { useSoldiers } from "../../../utils/context/SoldiersContext";
+import { usePlayerData } from "../../../utils/context/PlayerContext";
 import { getUsername } from "../../../utils/storage/localStorage";
 import Navbar from "../../shared/nav/nav"
 
 export default function Attack(){
-    const { numSoldiers } = useSoldiers()
+    const { numSoldiers } = usePlayerData()
     return(
         <>
             <Navbar></Navbar>

@@ -11,14 +11,14 @@ import Home from './components/pages/home/home';
 import PageNotFound from './components/pages/pageNotFound/pageNotFound';
 import Game from './components/pages/game/game';
 
-import { SoldiersStateProvider } from './utils/context/SoldiersContext';
+import { PlayerStateProvider } from './utils/context/PlayerContext';
 import { ensureLoggedIn } from './utils/api/auth';
 
 const ProtectedRoute = ({ children }) => ensureLoggedIn() ? children : <Navigate to="/login" replace />;
 
 export default function app(){
     return(
-        <SoldiersStateProvider>
+        <PlayerStateProvider>
             <BrowserRouter>
                 <div className="container">
                     <Routes>
@@ -34,6 +34,6 @@ export default function app(){
                     <Footer></Footer>
                 </div>
             </BrowserRouter>
-        </SoldiersStateProvider>
+        </PlayerStateProvider>
     )
 }
