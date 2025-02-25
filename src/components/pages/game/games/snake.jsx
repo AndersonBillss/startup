@@ -41,9 +41,11 @@ export default function Snake(){
     function startGame() {
         setSnake(startingSnake)
         setApple(startingApple)
+        applePosRef.current = startingApple
         setLose(false)
         pointsRef.current = 0
         directionRef.current = "right"
+        prevDirectionRef.current = "right"
         playingRef.current = true
         if (intervalRef.current) clearInterval(intervalRef.current);
         intervalRef.current = setInterval(() => {
@@ -78,7 +80,7 @@ export default function Snake(){
         if(isTouchingApple(newSnake, applePosRef.current)){
             pointsRef.current ++
             growRef.current = true
-            applePosRef.current = randomizeApple();;
+            applePosRef.current = randomizeApple(prevSnake);;
         }
         if(isColliding(newSnake)){
             loseGame()
@@ -106,13 +108,11 @@ export default function Snake(){
         }
         return false
     }
-    function randomizeApple(){
+    function randomizeApple(currSnake){
         const emptyCells = [];
-
         for (let row = 0; row < gridHeight; row++) {
             for (let col = 0; col < gridWidth; col++) {
-                const isOccupied = snake.some(([sRow, sCol]) => sRow === row && sCol === col);
-    
+                const isOccupied = currSnake.some(([sRow, sCol]) => sRow === row && sCol === col);
                 if (!isOccupied) {
                     emptyCells.push([row, col]);
                 }

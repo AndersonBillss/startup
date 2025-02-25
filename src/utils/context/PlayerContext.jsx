@@ -11,7 +11,7 @@ const PlayerContext = createContext(null)
 export function PlayerStateProvider({ children }) {
     useEffect(() => {
       if(getLoggedIn()){
-        console.log("Already logged in. Gettting player data...")
+        console.log("Already logged in. Getting player data...")
         getPlayerData().then(data => {
           setPlayerData(data)
         })
