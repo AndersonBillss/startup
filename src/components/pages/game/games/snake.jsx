@@ -14,6 +14,7 @@ export default function Snake(){
 
     const [snake, setSnake] = useState(startingSnake)
     const [apple, setApple] = useState(startingApple)
+    const applePosRef = useRef(startingApple)
     const [lose, setLose] = useState(false)
     const playingRef = useRef(false)
     const intervalRef = useRef(null);
@@ -46,12 +47,12 @@ export default function Snake(){
         playingRef.current = true
         if (intervalRef.current) clearInterval(intervalRef.current);
         intervalRef.current = setInterval(() => {
-            setSnake((prevSnake) => moveSnake(prevSnake, apple));
+            setSnake((prevSnake) => moveSnake(prevSnake));
         }, 350);
     }
     if (!playingRef.current) clearInterval(intervalRef.current);
 
-    function moveSnake(prevSnake, applePosition){
+    function moveSnake(prevSnake){
         const newSnake = [...prevSnake]
         const head = newSnake[0]
         const opposites = {
@@ -74,10 +75,10 @@ export default function Snake(){
 
         if (!growRef.current) newSnake.pop()
         growRef.current = false
-        if(isTouchingApple(newSnake, applePosition)){
+        if(isTouchingApple(newSnake, applePosRef.current)){
             pointsRef.current ++
             growRef.current = true
-            applePosition = randomizeApple();;
+            applePosRef.current = randomizeApple();;
         }
         if(isColliding(newSnake)){
             loseGame()
@@ -120,7 +121,7 @@ export default function Snake(){
         if (emptyCells.length > 0) {
             const randomIndex = Math.floor(Math.random() * emptyCells.length);
             const newApple = emptyCells[randomIndex];
-            setApple(() => newApple);        
+            setApple(newApple);        
             return newApple    
         }        
 

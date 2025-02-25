@@ -21,7 +21,7 @@ export default function EarnMoney(){
             backgroundColor: "#FEE698",
             textColor: "black",
             unlocked: true,
-            costToUnlock: 0,
+            costToUnlock: 75,
         },
     ]
     const { numSoldiers } = useSoldiers()
