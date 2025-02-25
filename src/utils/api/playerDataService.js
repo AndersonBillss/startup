@@ -1,8 +1,8 @@
-export async function getSoldiers(){
-    console.log("Fetching Soldiers from API...") // API call here
-    return 7
+export async function updatePlayerData(playerData){
+    console.log("Setting Player data:", playerData)
+    localStorage.setItem("playerData", JSON.stringify(playerData))
+    return playerData
 }
-export async function setSoldiers(n){
-    console.log("Setting Number of Soldiers: " + n) // API call here
-    return n
+export async function getPlayerData(){
+    return JSON.parse(localStorage.getItem("playerData"))
 }

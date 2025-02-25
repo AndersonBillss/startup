@@ -2,7 +2,6 @@ import React from "react";
 import '../../../styles.css'
 import './earnMoney.css'
 import { usePlayerData } from "../../../utils/context/PlayerContext";
-import { getUsername } from "../../../utils/storage/localStorage";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../shared/nav/nav"
 
@@ -24,12 +23,12 @@ export default function EarnMoney(){
             costToUnlock: 75,
         },
     ]
-    const { numSoldiers } = usePlayerData()
+    const { numSoldiers, username } = usePlayerData()
     return(
         <>
             <Navbar></Navbar>
             <div className="page">
-                <div className="main title">Welcome, {getUsername()}!</div> 
+                <div className="main title">Welcome, {username}!</div> 
                 <h2 className="title center">Earn Money</h2>
                 <div className="center">[Use third party API to allow users to select the photo for their civilization]</div>
                 <div className="center">[kingdom name and background image will be stored in a database]</div>

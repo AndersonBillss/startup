@@ -1,13 +1,23 @@
-import React, { createContext, useContext, useState } from 'react';
-import { setSoldiers } from '../api/playerDataService';
-import { loginUser } from '../api/auth';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { getPlayerData, updatePlayerData } from "../api/playerDataService"
+import { loginUser, logoutUser } from '../api/auth';
+import { getLoggedIn } from '../storage/localStorage';
 
 const PlayerContext = createContext(null)
 
 
 
 // Use React's Context API to allow sharing of state
-export function PlayerStateProvider({ children }) {  
+export function PlayerStateProvider({ children }) {
+    useEffect(() => {
+      if(getLoggedIn()){
+        console.log("Already logged in. Gettting player data...")
+        getPlayerData().then(data => {
+          setPlayerData(data)
+        })
+      }
+    },[])
+
     const [playerData, setPlayerData] = useState({
       id: "",
       name: "",
@@ -27,7 +37,7 @@ export function PlayerStateProvider({ children }) {
     }
     async function logout(username, password){
       try{
-        await loginUser(username, password);
+        await logoutUser(username, password);
         return true;
       } catch (error){
         return false;
@@ -36,8 +46,8 @@ export function PlayerStateProvider({ children }) {
 
     // Wrap an API call around my setNumSoldiersState function 
     const setNumSoldiers = (n) => {
-      setSoldiers(n).then(soldiers => {
-        setPlayerData({...playerData, soldiers: soldiers})
+      updatePlayerData({...playerData, soldiers: n}).then(newData => {
+        setPlayerData(newData)
       })
     }
 
@@ -47,9 +57,9 @@ export function PlayerStateProvider({ children }) {
         login,
         logout,
         numSoldiers: playerData.soldiers, 
+        username: playerData.name,
         setNumSoldiers, 
-        playerData, 
-        setPlayerData
+        playerData,
         }}>
         {children}
       </PlayerContext.Provider>

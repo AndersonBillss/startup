@@ -2,16 +2,15 @@ import React from "react";
 import '../../../styles.css'
 import './attack.css'
 import { usePlayerData } from "../../../utils/context/PlayerContext";
-import { getUsername } from "../../../utils/storage/localStorage";
 import Navbar from "../../shared/nav/nav"
 
 export default function Attack(){
-    const { numSoldiers } = usePlayerData()
+    const { numSoldiers, username } = usePlayerData()
     return(
         <>
             <Navbar></Navbar>
             <div className="page">
-            <div className="main title">{getUsername()}</div>   
+            <div className="main title">{username}</div>   
             <p>Current Soldiers: {numSoldiers}</p>         
 
             <h2 className="title center">Attack</h2>

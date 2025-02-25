@@ -1,24 +1,28 @@
-import { getLoggedIn, setLoggedIn, setUsername } from "../storage/localStorage"
+import { getLoggedIn, setLoggedIn } from "../storage/localStorage"
 
 export async function loginUser(username, password){
     console.log(`Logging in: ${username}, ${password}`) // API call here
+    
     if(!username){
         return false
     }
     setLoggedIn(true)
-    return {
-        id: 12489876957,
-        name: username,
-        kingomName: "",
-        unlockedGames: [],
-        soldiers: 5
+    const playerData = localStorage.getItem("playerData")
+    if(playerData){
+        return JSON.parse(playerData)
+    } else {
+        return {
+            id: "",
+            name: username,
+            kingomName: "",
+            unlockedGames: [],
+            soldiers: 0
+        }
     }
-    
 }
 
 export async function logoutUser(){
     console.log("Logging out...") // API call here
-    setUsername("")
     setLoggedIn(false)
     return true
 }
