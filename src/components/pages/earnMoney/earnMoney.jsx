@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import '../../../styles.css'
 import './earnMoney.css'
 import { usePlayerData } from "../../../utils/context/PlayerContext";
@@ -12,18 +12,20 @@ export default function EarnMoney(){
             title: "Mining",
             backgroundColor: "#FEE698",
             textColor: "black",
-            unlocked: true,
             costToUnlock: 0,
         },
         {
             title: "Snake",
-            backgroundColor: "#FEE698",
+            backgroundColor: "rgb(176, 234, 176)",
             textColor: "black",
-            unlocked: true,
-            costToUnlock: 75,
+            costToUnlock: 40,
         },
     ]
-    const { numSoldiers, username } = usePlayerData()
+    const { numSoldiers, username, unlockGame, unlockedGames } = usePlayerData()
+    function hasGame(game){
+        return unlockedGames.indexOf(game) !== -1
+    }
+    
     return(
         <>
             <Navbar></Navbar>
@@ -36,14 +38,28 @@ export default function EarnMoney(){
                 {
                     games.map((game, index) => {
                         return(
-                            <button
-                            key={index} 
-                            onClick={() => navigate(`/game/${game.title.toLowerCase()}`)}
-                            className="game-select button"
-                            style={{backgroundColor: game.backgroundColor, color: game.textColor}}
-                            >
-                                {game.title}
-                            </button>
+                            <Fragment key={index}>
+                            {
+                                hasGame(game.title)
+                                ?
+                                    <button
+                                    onClick={() => navigate(`/game/${game.title.toLowerCase()}`)}
+                                    className="game-select button"
+                                    style={{backgroundColor: game.backgroundColor, color: game.textColor}}
+                                    >
+                                        <h4 className="game-title">{game.title}</h4>
+                                    </button>
+                                :
+                                    <button
+                                    onClick={() => unlockGame(game.title, game.costToUnlock)}
+                                    className="game-select button locked"
+                                    >
+                                        <h4 className="game-title">{game.title}</h4>
+                                        <p>Unlock: {game.costToUnlock} soldiers</p>
+                                    </button>
+
+                            }
+                            </Fragment>
                         )
                     })
                 }

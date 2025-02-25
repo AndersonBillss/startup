@@ -28,7 +28,7 @@ export default function app(){
                         <Route path='/earnMoney' element={<ProtectedRoute><EarnMoney /></ProtectedRoute>} />
                         <Route path='/about' element={<ProtectedRoute><About /></ProtectedRoute>} />
                         <Route path='/attack' element={<ProtectedRoute><Attack /></ProtectedRoute>} />
-                        <Route path='/game/:selctedGame' element={<ProtectedRoute><Game /></ProtectedRoute>} />
+                        <Route path='/game/:selectedGame' element={<ProtectedRoute><Game /></ProtectedRoute>} />
                         <Route path='/*' element={<PageNotFound />} />
                     </Routes>
                     <Footer></Footer>

@@ -14,6 +14,7 @@ export function PlayerStateProvider({ children }) {
         console.log("Already logged in. Getting player data...")
         getPlayerData().then(data => {
           setPlayerData(data)
+          console.log(data)
         })
       }
     },[])
@@ -43,6 +44,19 @@ export function PlayerStateProvider({ children }) {
         return false;
       }
     }
+    async function unlockGame(game, price){
+      if(playerData.soldiers - price < 0){
+        return
+      }
+      playerData.unlockedGames.push(game)
+      updatePlayerData(
+        {
+          ...playerData, 
+          soldiers: (playerData.soldiers - price),
+        }).then(newData => {
+        setPlayerData(newData)
+      })
+    }
 
     // Wrap an API call around my setNumSoldiersState function 
     const setNumSoldiers = (n) => {
@@ -57,8 +71,10 @@ export function PlayerStateProvider({ children }) {
         login,
         logout,
         numSoldiers: playerData.soldiers, 
-        username: playerData.name,
         setNumSoldiers, 
+        username: playerData.name,
+        unlockedGames: playerData.unlockedGames,
+        unlockGame,
         playerData,
         }}>
         {children}

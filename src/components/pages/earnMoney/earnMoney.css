@@ -1,8 +1,18 @@
 .moneyButton{
     width: 150px;
 }
-
 .game-select{
     padding: 5px 10px;
     border-radius: 5px;
+}
+.game-title{
+    font-weight: normal;
+    font-size: 24px;
+    padding: 5px;
+}
+.locked{
+    background-color: var(--gray-light);
+}
+.button{
+    align-items: center;
 }

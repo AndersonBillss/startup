@@ -7,7 +7,7 @@ import Snake from "./games/snake";
 
 export default function Game(){
     const navigate = useNavigate();
-    const { selctedGame } = useParams();
+    const { selectedGame } = useParams();
     const { numSoldiers } = usePlayerData()
     const gamesMap = {
         "mining": Mining,
@@ -22,7 +22,7 @@ export default function Game(){
             </button>
             <div className="page">
                 <h2>Soldiers: {numSoldiers}</h2>
-                {gamesMap[selctedGame]()}
+                {gamesMap[selectedGame]()}
             </div>
         </>
     )

@@ -131,7 +131,12 @@ export default function Snake(){
         setNumSoldiers(numSoldiers + getTotalPoints())
     }
     function getTotalPoints(){
-        return pointsRef.current
+        let totalPoints = 0
+        for (let i = 0; i < pointsRef.current; i++){
+            //Earn more points the longer you stay alive
+            totalPoints += Math.floor(i/3)+3
+        }
+        return totalPoints
     }
 
     if(lose === true){
