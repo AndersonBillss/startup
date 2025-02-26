@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getPlayerData, updatePlayerData } from "../api/playerDataService"
-import { loginUser, logoutUser, signupUser } from '../api/auth';
+import { ensureLoggedIn, loginUser, logoutUser, signupUser } from '../api/auth';
 import { getLoggedIn } from '../storage/localStorage';
 
 const PlayerContext = createContext(null)
@@ -10,7 +10,7 @@ const PlayerContext = createContext(null)
 // Use React's Context API to allow sharing of state
 export function PlayerStateProvider({ children }) {
     useEffect(() => {
-      if(getLoggedIn()){
+      if(ensureLoggedIn()){
         console.log("Already logged in. Getting player data...")
         getPlayerData().then(data => {
           setPlayerData(data)

@@ -80,7 +80,7 @@ export default function Signup(){
             <div className="note">Must be 8+ characters with an uppercase, lowercase, number, and special character</div>
 
             <label>Confirm Password</label>
-            <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" type="password"/>
+            <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" type="password" autoComplete="new-password"/>
             {passwordErr && <div className="error">{confirmPasswordErr}</div>}
 
             <label>Kingdom Title</label>

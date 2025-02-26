@@ -6,9 +6,10 @@ export async function loginUser(username, password){
     if(!playerData){
         throw new Error("You need to create an account before logging in")
     }
-    if(JSON.parse(playerData).name === username){
+    const parsedData = JSON.parse(playerData)
+    if(parsedData.name === username){
         setLoggedIn(true)
-        return true
+        return parsedData
     }
     throw new Error("The created user doesn't have that username") 
 }
@@ -33,5 +34,8 @@ export async function signupUser(username, password, kingdomName){
 }
 
 export function ensureLoggedIn(){
+    if(JSON.parse(localStorage.getItem("playerData")) === null){
+        return false
+    }
     return getLoggedIn()
 }

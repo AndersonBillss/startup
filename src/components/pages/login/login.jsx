@@ -4,6 +4,7 @@ import { usePlayerData } from "../../../utils/context/PlayerContext";
 import '../../../styles.css'
 import "./login.css"
 import { getLoggedIn } from "../../../utils/storage/localStorage";
+import { ensureLoggedIn } from "../../../utils/api/auth";
 
 export default function Login(){
     const { login } = usePlayerData()
@@ -19,7 +20,7 @@ export default function Login(){
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(getLoggedIn()){
+        if(ensureLoggedIn()){
             navigate("/home")
         }
     })
