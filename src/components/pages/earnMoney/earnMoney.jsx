@@ -23,8 +23,6 @@ export default function EarnMoney(){
     ]
     const { numSoldiers, username, unlockGame, unlockedGames } = usePlayerData()
     function hasGame(game){
-        // console.log(unlockedGames)
-        // console.log(game)
         return unlockedGames.indexOf(game) !== -1
     }
     

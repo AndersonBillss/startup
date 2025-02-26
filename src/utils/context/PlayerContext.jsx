@@ -4,8 +4,6 @@ import { ensureLoggedIn, loginUser, logoutUser, signupUser } from '../api/auth';
 
 const PlayerContext = createContext(null)
 
-
-
 // Use React's Context API to allow sharing of state
 export function PlayerStateProvider({ children }) {
     useEffect(() => {
@@ -20,13 +18,14 @@ export function PlayerStateProvider({ children }) {
     const [playerData, setPlayerData] = useState({
       id: "",
       name: "",
-      kingomName: "",
+      kingdomName: "",
+      kingdomImg: "",
       unlockedGames: [],
       soldiers: 0
     })
-    async function signup(username, password, kingomName){
+    async function signup(username, password, kingdomName){
       try{
-        const data = await signupUser(username, password, kingomName)
+        const data = await signupUser(username, password, kingdomName)
         setPlayerData(data);
         return true;
       } catch (error){
@@ -64,6 +63,15 @@ export function PlayerStateProvider({ children }) {
         setPlayerData(newData)
       })
     }
+    async function setKingdomImg(url){
+      updatePlayerData(
+        {
+          ...playerData, 
+          kingdomImg: url,
+        }).then(newData => {
+        setPlayerData(newData)
+      })
+    }
 
     const setNumSoldiers = async(n) => {
       updatePlayerData({...playerData, soldiers: n}).then(newData => {
@@ -81,6 +89,9 @@ export function PlayerStateProvider({ children }) {
         setNumSoldiers, 
         username: playerData.name,
         unlockedGames: playerData.unlockedGames,
+        kingdomName: playerData.kingdomName,
+        kingdomImg: playerData.kingdomImg,
+        setKingdomImg,
         unlockGame,
         playerData,
         }}>

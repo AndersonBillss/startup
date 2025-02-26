@@ -35,7 +35,8 @@ export async function signupUser(username, password, kingdomName){
     const signupUserObject = {
         id: "",
         name: username,
-        kingomName: kingdomName,
+        kingdomName: kingdomName,
+        kingdomImg: "",
         unlockedGames: [],
         soldiers: 0
     }

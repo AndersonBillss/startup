@@ -1,0 +1,30 @@
+.home-img{
+    width: 300px;
+    height: 200px;
+    margin: 5px;
+    object-fit: cover;
+}
+.images{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.selected-img{
+    width: 400px;
+    height: 300px;
+    margin: 5px;
+    object-fit: cover;
+}
+.img-container{
+    position: relative;
+}
+.selected-title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    transform: translate(-50%, -50%);
+}
