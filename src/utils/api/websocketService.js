@@ -56,7 +56,3 @@ export function connectUpdatePlayers(fn){
 export function connectRecieveAttack(fn){
     updateSoldiersFunction = fn
 }
-
-function getRandomTime(){
-    return Math.random() * 7000 + 3000
-}
