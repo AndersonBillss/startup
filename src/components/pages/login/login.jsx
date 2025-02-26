@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { usePlayerData } from "../../../utils/context/PlayerContext";
 import '../../../styles.css'
 import "./login.css"
-import { getLoggedIn } from "../../../utils/storage/localStorage";
 import { ensureLoggedIn } from "../../../utils/api/auth";
 
 export default function Login(){

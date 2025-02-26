@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getPlayerData, updatePlayerData } from "../api/playerDataService"
 import { ensureLoggedIn, loginUser, logoutUser, signupUser } from '../api/auth';
-import { getLoggedIn } from '../storage/localStorage';
 
 const PlayerContext = createContext(null)
 

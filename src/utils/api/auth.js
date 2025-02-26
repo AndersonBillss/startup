@@ -1,4 +1,14 @@
-import { getLoggedIn, setLoggedIn } from "../storage/localStorage"
+const loggedInKey = "loggedIn"
+function setLoggedIn(loggedIn){
+    localStorage.setItem(loggedInKey, JSON.stringify(loggedIn))
+}
+function getLoggedIn(){
+    const loggedIn = localStorage.getItem(loggedInKey)
+    if(!loggedIn){
+        return false
+    }
+    return JSON.parse(loggedIn)
+}
 
 export async function loginUser(username, password){
     console.log(`Logging in: ${username}, ${password}`) // API call here
@@ -34,7 +44,7 @@ export async function signupUser(username, password, kingdomName){
 }
 
 export function ensureLoggedIn(){
-    if(JSON.parse(localStorage.getItem("playerData")) === null){
+    if(!localStorage.getItem("playerData")){
         return false
     }
     return getLoggedIn()
