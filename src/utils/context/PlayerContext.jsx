@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getPlayerData, updatePlayerData } from "../api/playerDataService"
 import { ensureLoggedIn, loginUser, logoutUser, signupUser } from '../api/auth';
+import { connectRecieveAttack, connectWebSocket } from '../api/websocketService';
 
 const PlayerContext = createContext(null)
 
@@ -13,6 +14,14 @@ export function PlayerStateProvider({ children }) {
           setPlayerData(data)
         })
       }
+      connectWebSocket("MyUrl")
+      connectRecieveAttack((numSoldiers) => {
+        let newNumSoldiers = playerData.soldiers - numSoldiers
+        if(newNumSoldiers < 0){
+          newNumSoldiers = 0
+        }
+        setNumSoldiers(newNumSoldiers)
+      })
     },[])
 
     const [playerData, setPlayerData] = useState({

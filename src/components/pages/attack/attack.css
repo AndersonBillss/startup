@@ -8,15 +8,20 @@
 .table-row{
     display: flex;
     align-items: center;
-    justify-content: space-between;
     border-bottom: 2px var(--gray-dark) solid;
+}
+.table-section{
+    flex-grow: 1;
+    justify-content: space-between;
 }
 .table-img{
     width: 40px;
     height: auto;
     transform: rotate(180deg); 
 }
-
+.soldiers-display{
+    margin-left: 15px;
+}
 #soldiers{
     font-size: 24px;
     margin: 15px;
