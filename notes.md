@@ -24,3 +24,7 @@ I had a lot of fun using CSS. I take full advantage of the power of Flexbox and 
 ## React Part 1 Notes
 
 Adding React to my project was straightforward. I like that I can reuse and import components so I don't have to duplicate HTML like when I had to in the HTML deliverable. This feels much more structured. It also got me ready to add JavaScript to my application.
+
+## React Part 2 Notes
+
+I had a lot of fun with this part. State is a difficult concept but I feel like I have mastered it. In addition to useState and useEffect, I used React's Context API to share important state between my pages. I mocked all of the services which required me to think about how I want these services to work. Although working with React was difficult, I can't wait to get started on the server!
