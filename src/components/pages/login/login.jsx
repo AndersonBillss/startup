@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePlayerData } from "../../../utils/context/PlayerContext";
 import '../../../styles.css'
+import "./login.css"
 import { getLoggedIn } from "../../../utils/storage/localStorage";
 
 export default function Login(){
@@ -12,6 +13,8 @@ export default function Login(){
 
     const [usernameErr, setUsernameErr] = useState(null)
     const [passwordErr, setPasswordErr] = useState(null)
+
+    const [loginErr, setLoginErr] = useState(null)
 
     const navigate = useNavigate()
 
@@ -25,9 +28,11 @@ export default function Login(){
         if(checkForInputError()){
             return
         }
-        login(username, password).then(success => {
-            if(success){
+        login(username, password).then(result => {
+            if(result === true){
                 navigate("/home")
+            } else {
+                setLoginErr(result)
             }
         })
     }
@@ -70,6 +75,16 @@ export default function Login(){
             {passwordErr && <div className="error">{passwordErr}</div>}
         </form>
         <button className="button" onClick={() => {handleLoginClick(username, password)}}>Login</button>
+        {loginErr && <div className="error">{loginErr}</div>}
+        <div className="or-container">
+            <div className="line" />
+            <h2>OR</h2>
+            <div className="line" />
+        </div>
+        <p>Don't have an account?</p>
+        <button className="button" onClick={() => navigate("/signup")}>
+            Sign Up
+        </button>
     </div>
     )
 }

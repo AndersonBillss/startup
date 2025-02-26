@@ -1,0 +1,16 @@
+.kingdom-title{
+    padding: 5px 10px;
+    background-color: var(--primary-light); 
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.dice-icon{
+    width: 24px;
+    height: 24px;
+}
+
+.note{
+    width: 300px;
+    text-align: center;
+}

@@ -1,5 +1,5 @@
 :root{
-    --primary-light: rgb(255, 175, 175);
+    --primary-light: rgb(220, 176, 176);
     --primary-dark: rgb(103, 0, 0);
     --secondary-light: rgb(213, 165, 213);
     --secondary-dark: rgb(79, 30, 79);
@@ -105,6 +105,10 @@ header{
 }
 .error{
     color: red;
+}
+.note{
+    font-size: 14px;
+    color: gray;
 }
 .main.title{
     margin-bottom: 50px;

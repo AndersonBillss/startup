@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getPlayerData, updatePlayerData } from "../api/playerDataService"
-import { loginUser, logoutUser } from '../api/auth';
+import { loginUser, logoutUser, signupUser } from '../api/auth';
 import { getLoggedIn } from '../storage/localStorage';
 
 const PlayerContext = createContext(null)
@@ -14,7 +14,6 @@ export function PlayerStateProvider({ children }) {
         console.log("Already logged in. Getting player data...")
         getPlayerData().then(data => {
           setPlayerData(data)
-          console.log(data)
         })
       }
     },[])
@@ -26,14 +25,23 @@ export function PlayerStateProvider({ children }) {
       unlockedGames: [],
       soldiers: 0
     })
-
+    async function signup(username, password, kingomName){
+      try{
+        const data = await signupUser(username, password, kingomName)
+        setPlayerData(data);
+        return true;
+      } catch (error){
+        console.log(error)
+        return false;
+      }
+    }
     async function login(username, password){
       try{
         const data = await loginUser(username, password); 
         setPlayerData(data);
         return true;
       } catch (error){
-        return false;
+        return error.message;
       }
     }
     async function logout(username, password){
@@ -58,8 +66,7 @@ export function PlayerStateProvider({ children }) {
       })
     }
 
-    // Wrap an API call around my setNumSoldiersState function 
-    const setNumSoldiers = (n) => {
+    const setNumSoldiers = async(n) => {
       updatePlayerData({...playerData, soldiers: n}).then(newData => {
         setPlayerData(newData)
       })
@@ -68,6 +75,7 @@ export function PlayerStateProvider({ children }) {
 
     return (
       <PlayerContext.Provider value={{ 
+        signup,
         login,
         logout,
         numSoldiers: playerData.soldiers, 

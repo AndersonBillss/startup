@@ -13,6 +13,7 @@ import Game from './components/pages/game/game';
 
 import { PlayerStateProvider } from './utils/context/PlayerContext';
 import { ensureLoggedIn } from './utils/api/auth';
+import Signup from './components/pages/signup/signup';
 
 const ProtectedRoute = ({ children }) => ensureLoggedIn() ? children : <Navigate to="/login" replace />;
 
@@ -23,6 +24,7 @@ export default function app(){
                 <div className="container">
                     <Routes>
                         <Route path='/login' element={<Login />}></Route>
+                        <Route path='/signup' element={<Signup />}></Route>
                         <Route path='/' element={<ProtectedRoute><Navigate to="/home" replace /></ProtectedRoute>}></Route>
                         <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} />
                         <Route path='/earnMoney' element={<ProtectedRoute><EarnMoney /></ProtectedRoute>} />

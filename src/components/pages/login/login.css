@@ -1,0 +1,14 @@
+.or-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+
+.line{
+    height: 2px;
+    width: 20vw;
+    background-color: black;
+    flex-grow: 1;
+    margin: 5px;
+}
