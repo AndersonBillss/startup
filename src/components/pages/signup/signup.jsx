@@ -81,7 +81,7 @@ export default function Signup(){
 
             <label>Confirm Password</label>
             <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" type="password" autoComplete="new-password"/>
-            {passwordErr && <div className="error">{confirmPasswordErr}</div>}
+            {confirmPasswordErr && <div className="error">{confirmPasswordErr}</div>}
 
             <label>Kingdom Title</label>
         </form>

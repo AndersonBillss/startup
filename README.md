@@ -112,7 +112,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [X] **All functionality implemented or mocked out** - I mocked all of the api services so I can easily connect them. I created all of the game logic and tested it.
-- [X] **Hooks** - As instructed, I made good use of React's useState and useEffect hooks. For this project, I also used React's context API to share state between components
+- [X] **Hooks** - I extensively used React's useState and useEffect hooks. For this project, I also used React's context API to share state between components
 
 ## 🚀 Service deliverable
 

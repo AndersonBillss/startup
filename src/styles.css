@@ -99,6 +99,7 @@ header{
     font-size: 36px;
     padding: 0 15px;
     margin-bottom: 15px;
+    text-align: center;
 }
 .underlined{
     border-bottom: 2px var(--gray-dark) solid;
@@ -113,6 +114,7 @@ header{
 .main.title{
     margin-bottom: 50px;
 }
+
 
 @media(max-width: 350px){
     .page{

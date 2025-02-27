@@ -36,7 +36,7 @@ export async function signupUser(username, password, kingdomName){
         id: "",
         name: username,
         kingdomName: kingdomName,
-        kingdomImg: "",
+        kingdomImg: null,
         unlockedGames: [],
         soldiers: 0
     }

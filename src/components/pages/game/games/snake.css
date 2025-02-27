@@ -110,3 +110,11 @@
     background-color: red;
     border-radius: 50%;
 }
+
+@media(max-width: 375px){
+    .cell{
+        width: 20px;
+        height: 20px;
+        border: 2px gray solid;
+    }    
+}

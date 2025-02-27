@@ -15,7 +15,7 @@
 }
 .nav-bottom{
     display: flex;
-    justify-content:space-around ;
+    justify-content: space-around;
     flex-grow: 3;
 }
 .title.button{
@@ -28,9 +28,13 @@
         display: grid;
         grid-template-columns: 100px auto;
         grid-template-rows: 40px auto;
+        place-items: center;
     }
     .nav-bottom *{
         display: flex;
         text-align: center;
+    }
+    .nav-bottom .button{
+        font-size: 15px;
     }
 }

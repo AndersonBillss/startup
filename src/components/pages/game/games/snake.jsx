@@ -29,6 +29,10 @@ export default function Snake(){
             if (e.key === "ArrowLeft") directionRef.current = "left";
             if (e.key === "ArrowUp") directionRef.current = "up";
             if (e.key === "ArrowDown") directionRef.current = "down";
+            if (e.key === "d") directionRef.current = "right";
+            if (e.key === "a") directionRef.current = "left";
+            if (e.key === "w") directionRef.current = "up";
+            if (e.key === "s") directionRef.current = "down";
         };
 
         document.addEventListener("keydown", handleKeyDown);
@@ -168,7 +172,7 @@ export default function Snake(){
                 ))}
             </div>
             {!playingRef.current && <button className="button" onClick={startGame}>Start Game</button>}
-            <h3>{lose && "You Lose! "} Total Points: {getTotalPoints()}</h3>
+            <h3 className="center">{lose && "You Lose! "} Total Points: {getTotalPoints()}</h3>
         </>
     )
     function getCellType(row, col){

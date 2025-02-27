@@ -28,7 +28,7 @@ export function PlayerStateProvider({ children }) {
       id: "",
       name: "",
       kingdomName: "",
-      kingdomImg: "",
+      kingdomImg: null,
       unlockedGames: [],
       soldiers: 0
     })
