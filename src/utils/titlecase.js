@@ -1,6 +1,9 @@
 export function toTitleCase(str) {
+    if(!str){
+        return ""
+    }
     const excludeWords = ["a", "an", "the", "of", "and", "but", "or", "for", "nor", "on", "at", "to", "by", "with"];
-    
+
     return str
         .toLowerCase()
         .split(" ")

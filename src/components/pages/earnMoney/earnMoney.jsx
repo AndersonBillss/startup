@@ -20,6 +20,12 @@ export default function EarnMoney(){
             textColor: "black",
             costToUnlock: 40,
         },
+        {
+            title: "Asteroids",
+            backgroundColor: "rgb(247, 208, 253)",
+            textColor: "black",
+            costToUnlock: 100,
+        },
     ]
     const { numSoldiers, username, unlockGame, unlockedGames } = usePlayerData()
     function hasGame(game){

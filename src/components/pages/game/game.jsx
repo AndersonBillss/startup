@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { usePlayerData } from "../../../utils/context/PlayerContext";
 import Mining from "./games/mining";
 import Snake from "./games/snake";
+import { Asteroids } from "./games/asteroids";
 
 export default function Game(){
     const navigate = useNavigate();
@@ -11,7 +12,8 @@ export default function Game(){
     const { numSoldiers } = usePlayerData()
     const gamesMap = {
         "mining": Mining,
-        "snake": Snake
+        "snake": Snake,
+        "asteroids": Asteroids,
     }
 
     return(

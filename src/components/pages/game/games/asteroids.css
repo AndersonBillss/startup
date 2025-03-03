@@ -1,0 +1,10 @@
+.asteroid-canvas{
+    width: calc(65vw + 65px);
+    height: auto;
+    background-color: black;
+}
+.game{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
