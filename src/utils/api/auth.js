@@ -1,4 +1,6 @@
 const loggedInKey = "loggedIn"
+const apiUrl = "http://localhost:3000/api"
+
 function setLoggedIn(loggedIn){
     localStorage.setItem(loggedInKey, JSON.stringify(loggedIn))
 }
@@ -31,17 +33,21 @@ export async function logoutUser(){
 }
 
 export async function signupUser(username, password, kingdomName){
-    console.log("Signing up...") // API call here
-    const signupUserObject = {
-        id: "",
-        name: username,
-        kingdomName: kingdomName,
-        kingdomImg: null,
-        unlockedGames: [],
-        soldiers: 0
+    const response = await fetch(`${apiUrl}/signup`, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            username: username,
+            password: password,
+            kingdomName: kingdomName
+        })
+    })
+    if(response.ok){
+        return true
+    } else {
+        const responseJson = await response.json()
+        return responseJson.msg
     }
-    localStorage.setItem("playerData", JSON.stringify(signupUserObject))
-    return signupUserObject
 }
 
 export function ensureLoggedIn(){

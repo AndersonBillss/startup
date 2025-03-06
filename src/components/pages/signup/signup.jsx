@@ -19,11 +19,13 @@ export default function Signup(){
     const [usernameErr, setUsernameErr] = useState(null)
     const [passwordErr, setPasswordErr] = useState(null)
     const [confirmPasswordErr, setConfirmPasswordErr] = useState(null)
+    const [signupErr, setSignupErr] = useState(null)
 
     function handleSignupClick(){
         const trimmedUsername = username.trim()
         const trimmedPassword = password.trim()
         const trimmedConfirmPassword = confirmPassword.trim()
+        setSignupErr(null)
 
         const usernameValid = validateUsername(trimmedUsername)
         if(usernameValid === true){ 
@@ -51,8 +53,10 @@ export default function Signup(){
         }
 
         signup(username, password, kingdomName).then(success => {
-            if(success){
+            if(success === true){
                 navigate("/login")
+            } else {
+                setSignupErr(success)
             }
         })
     }
@@ -92,6 +96,7 @@ export default function Signup(){
             </svg>
         </button>
         <button className="button" onClick={handleSignupClick}><h2>Sign Up</h2></button>
+        {signupErr && <div className="error">{signupErr}</div>}
     </div>
     )
 }

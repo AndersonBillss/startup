@@ -26,7 +26,7 @@ export function PlayerStateProvider({ children }) {
 
     const [playerData, setPlayerData] = useState({
       id: "",
-      name: "",
+      username: "",
       kingdomName: "",
       kingdomImg: null,
       unlockedGames: [],
@@ -34,12 +34,11 @@ export function PlayerStateProvider({ children }) {
     })
     async function signup(username, password, kingdomName){
       try{
-        const data = await signupUser(username, password, kingdomName)
-        setPlayerData(data);
-        return true;
+        const success = await signupUser(username, password, kingdomName)
+        return success
       } catch (error){
-        console.log(error)
-        return false;
+        console.error(error)
+        return "Error occurred while signing up";
       }
     }
     async function login(username, password){
@@ -96,7 +95,7 @@ export function PlayerStateProvider({ children }) {
         logout,
         numSoldiers: playerData.soldiers, 
         setNumSoldiers, 
-        username: playerData.name,
+        username: playerData.username,
         unlockedGames: playerData.unlockedGames,
         kingdomName: playerData.kingdomName,
         kingdomImg: playerData.kingdomImg,
