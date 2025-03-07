@@ -7,7 +7,7 @@ export const users = [
     {
         id: "1934856",
         username: "BenjaminFranklin",
-        hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1
+        hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1!
         kingdomName: "Green Hill Caliphate",
         kingdomImg: null,
         unlockedGames: [],
@@ -16,7 +16,7 @@ export const users = [
     {
         id: "9864367",
         username: "ThomasJefferson",
-        hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1
+        hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1!
         kingdomName: "Republic of Swift Computers",
         kingdomImg: null,
         unlockedGames: [],
@@ -25,7 +25,7 @@ export const users = [
     {
         id: "5293693",
         username: "JuliusCaesar",
-        hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1
+        hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1!
         kingdomName: "Duchy of Furious Composers",
         kingdomImg: null,
         unlockedGames: [],
@@ -52,11 +52,9 @@ apiRoutes.post("/signup", async(req, res) => {
         res.status(400).send({msg: "No username provided"})
         return
     }
-    for(const user of users){
-        if(user.username === username){
-            res.status(400).send({msg: "Username already taken"})
-            return
-        }
+    if(findUser(username) !== false){
+        res.status(400).send({msg: "Username already taken"})
+        return
     }
     const validatedUsername = validateUsername(username)
     if(validatedUsername !== true){
@@ -93,9 +91,53 @@ apiRoutes.post("/signup", async(req, res) => {
     res.send({msg: "success"})
 })
 
-apiRoutes.post("/login", (req, res) => {
-
+apiRoutes.post("/login", async(req, res) => {
+    const username = req.body.username
+    const password = req.body.password
+    if(!username){
+        res.status(400).send({msg: "No username sent"})
+        return
+    }
+    if(!password){
+        res.status(401).send({msg: "No password sent"})
+        return
+    }
+    console.log("username:", username)
+    console.log("password:", password)
+    const targetUser = findUser(username)
+    if(targetUser === false){
+        res.status(401).send({msg: "Invalid username or password"})
+        return
+    }
+    console.log("username found:", targetUser)
+    const correctPassword = await comparePassword(password, targetUser.hashedPassword)
+    console.log("correct password:", correctPassword)
+    if(!correctPassword){
+        res.status(401).send({msg: "Invalid username or password"})
+        return
+    }
+    res.send({data: limitUserData(targetUser)})
 })
 apiRoutes.put("/updateData", (req, res) => {
 
 })
+
+function findUser(username){
+    for(const user of users){
+        if(user.username === username){
+            return user
+        }
+    }
+    return false
+}
+
+function limitUserData(user){
+    return{
+        id: user.id,
+        username: user.username,
+        kingdomName: user.kingdomName,
+        kingdomImg: user.kingdomImg,
+        unlockedGames: user.unlockedGames,
+        soldiers: user.soldiers
+    }
+}

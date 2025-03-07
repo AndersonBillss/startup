@@ -34,8 +34,12 @@ export function PlayerStateProvider({ children }) {
     })
     async function signup(username, password, kingdomName){
       try{
-        const success = await signupUser(username, password, kingdomName)
-        return success
+        const [success, msg] = await signupUser(username, password, kingdomName)
+        if(success){
+          return true
+        } else {
+          return msg
+        }
       } catch (error){
         console.error(error)
         return "Error occurred while signing up";
@@ -43,11 +47,13 @@ export function PlayerStateProvider({ children }) {
     }
     async function login(username, password){
       try{
-        const data = await loginUser(username, password); 
-        setPlayerData(data);
-        return true;
+        const [success, data] = await loginUser(username, password);
+        if(success){
+          setPlayerData(data);
+        }
+        return [success, data]
       } catch (error){
-        return error.message;
+        return "Error occurred while logging in";
       }
     }
     async function logout(username, password){

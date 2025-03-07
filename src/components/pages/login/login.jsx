@@ -28,11 +28,12 @@ export default function Login(){
         if(checkForInputError()){
             return
         }
-        login(username, password).then(result => {
-            if(result === true){
+        login(username, password).then(([success, data]) => {
+            console.log(data)
+            if(success === true){
                 navigate("/home")
             } else {
-                setLoginErr(result)
+                setLoginErr(data)
             }
         })
     }

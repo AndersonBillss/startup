@@ -13,17 +13,20 @@ function getLoggedIn(){
 }
 
 export async function loginUser(username, password){
-    console.log(`Logging in: ${username}, ${password}`) // API call here
-    const playerData = localStorage.getItem("playerData")
-    if(!playerData){
-        throw new Error("You need to create an account before logging in")
+    const response = await fetch(`${apiUrl}/login`, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            username: username,
+            password: password,
+        })
+    })
+    const responseJson = await response.json()
+    if(response.ok){
+        return [true, responseJson.data]
+    } else {
+        return [false, responseJson.msg]
     }
-    const parsedData = JSON.parse(playerData)
-    if(parsedData.name === username){
-        setLoggedIn(true)
-        return parsedData
-    }
-    throw new Error("The created user doesn't have that username") 
 }
 
 export async function logoutUser(){
@@ -43,10 +46,10 @@ export async function signupUser(username, password, kingdomName){
         })
     })
     if(response.ok){
-        return true
+        return [true, "Successfully logged in"]
     } else {
         const responseJson = await response.json()
-        return responseJson.msg
+        return [false, responseJson.msg]
     }
 }
 
