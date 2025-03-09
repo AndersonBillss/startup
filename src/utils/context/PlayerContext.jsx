@@ -8,26 +8,26 @@ const PlayerContext = createContext(null)
 // Use React's Context API to allow sharing of state
 export function PlayerStateProvider({ children }) {
   
-    useEffect(() => {
-      getPlayerData().then(([success, data]) => {
-        if(success){
-          setPlayerData(data)
-          setLoggedIn(true)
-        } else {
-          setLoggedIn(false)
-        }
-      })
-      connectWebSocket("MyUrl")
-      connectRecieveAttack((numSoldiers) => {
-        let newNumSoldiers = playerData.soldiers - numSoldiers
-        if(newNumSoldiers < 0){
-          newNumSoldiers = 0
-        }
-        setNumSoldiers(newNumSoldiers)
-      })
-    },[])
+    // useEffect(() => {
+    //   getPlayerData().then(([success, data]) => {
+    //     if(success){
+    //       setPlayerDataState(data)
+    //       setLoggedIn(true)
+    //     } else {
+    //       setLoggedIn(false)
+    //     }
+    //   })
+    //   connectWebSocket("MyUrl")
+    //   connectRecieveAttack((numSoldiers) => {
+    //     let newNumSoldiers = playerData.soldiers - numSoldiers
+    //     if(newNumSoldiers < 0){
+    //       newNumSoldiers = 0
+    //     }
+    //     setNumSoldiers(newNumSoldiers)
+    //   })
+    // },[])
 
-    const [playerData, setPlayerData] = useState({
+    const [playerData, setPlayerDataState] = useState({
       id: "",
       username: "",
       kingdomName: "",
@@ -52,7 +52,7 @@ export function PlayerStateProvider({ children }) {
       try{
         const [success, data] = await loginUser(username, password);
         if(success){
-          setPlayerData(data);
+          setPlayerDataState(data);
         }
         return [success, data]
       } catch (error){
@@ -77,7 +77,7 @@ export function PlayerStateProvider({ children }) {
           ...playerData, 
           soldiers: (playerData.soldiers - price),
         }).then(([success, newData]) => {
-        setPlayerData(newData)
+        setPlayerDataState(newData)
       })
     }
     async function setKingdomImg(url){
@@ -86,13 +86,13 @@ export function PlayerStateProvider({ children }) {
           ...playerData, 
           kingdomImg: url,
         }).then(([success, newData]) => {
-        setPlayerData(newData)
+        setPlayerDataState(newData)
       })
     }
 
     const setNumSoldiers = async(n) => {
       updatePlayerData({...playerData, soldiers: n}).then(([success, newData]) => {
-        setPlayerData(newData)
+        setPlayerDataState(newData)
       })
     }
 
@@ -111,6 +111,7 @@ export function PlayerStateProvider({ children }) {
         setKingdomImg,
         unlockGame,
         playerData,
+        setPlayerDataState
         }}>
         {children}
       </PlayerContext.Provider>
