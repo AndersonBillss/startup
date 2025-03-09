@@ -29,7 +29,6 @@ export default function Login(){
             return
         }
         login(username, password).then(([success, data]) => {
-            console.log(data)
             if(success === true){
                 navigate("/home")
             } else {

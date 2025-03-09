@@ -1,19 +1,22 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getPlayerData, updatePlayerData } from "../api/playerDataService"
-import { ensureLoggedIn, loginUser, logoutUser, signupUser } from '../api/auth';
+import { setLoggedIn, loginUser, logoutUser, signupUser } from '../api/auth';
 import { connectRecieveAttack, connectWebSocket } from '../api/websocketService';
 
 const PlayerContext = createContext(null)
 
 // Use React's Context API to allow sharing of state
 export function PlayerStateProvider({ children }) {
+  
     useEffect(() => {
-      if(ensureLoggedIn()){
-        console.log("Already logged in. Getting player data...")
-        getPlayerData().then(data => {
+      getPlayerData().then(([success, data]) => {
+        if(success){
           setPlayerData(data)
-        })
-      }
+          setLoggedIn(true)
+        } else {
+          setLoggedIn(false)
+        }
+      })
       connectWebSocket("MyUrl")
       connectRecieveAttack((numSoldiers) => {
         let newNumSoldiers = playerData.soldiers - numSoldiers
@@ -73,7 +76,7 @@ export function PlayerStateProvider({ children }) {
         {
           ...playerData, 
           soldiers: (playerData.soldiers - price),
-        }).then(newData => {
+        }).then(([success, newData]) => {
         setPlayerData(newData)
       })
     }
@@ -82,13 +85,13 @@ export function PlayerStateProvider({ children }) {
         {
           ...playerData, 
           kingdomImg: url,
-        }).then(newData => {
+        }).then(([success, newData]) => {
         setPlayerData(newData)
       })
     }
 
     const setNumSoldiers = async(n) => {
-      updatePlayerData({...playerData, soldiers: n}).then(newData => {
+      updatePlayerData({...playerData, soldiers: n}).then(([success, newData]) => {
         setPlayerData(newData)
       })
     }

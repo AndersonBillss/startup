@@ -1,21 +1,11 @@
-const loggedInKey = "loggedIn"
 const apiUrl = "http://localhost:3000/api"
-
-function setLoggedIn(loggedIn){
-    localStorage.setItem(loggedInKey, JSON.stringify(loggedIn))
-}
-function getLoggedIn(){
-    const loggedIn = localStorage.getItem(loggedInKey)
-    if(!loggedIn){
-        return false
-    }
-    return JSON.parse(loggedIn)
-}
+let loggedIn = false
 
 export async function loginUser(username, password){
     const response = await fetch(`${apiUrl}/login`, {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
+        credentials: 'include',
         body: JSON.stringify({
             username: username,
             password: password,
@@ -23,8 +13,10 @@ export async function loginUser(username, password){
     })
     const responseJson = await response.json()
     if(response.ok){
+        setLoggedIn(true)
         return [true, responseJson.data]
     } else {
+        setLoggedIn(false)
         return [false, responseJson.msg]
     }
 }
@@ -54,8 +46,8 @@ export async function signupUser(username, password, kingdomName){
 }
 
 export function ensureLoggedIn(){
-    if(!localStorage.getItem("playerData")){
-        return false
-    }
-    return getLoggedIn()
+    return loggedIn
+}
+export function setLoggedIn(loginSuccess){
+    loggedIn = loginSuccess
 }
