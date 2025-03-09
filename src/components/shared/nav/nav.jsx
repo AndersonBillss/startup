@@ -7,11 +7,10 @@ import './nav.css'
 export default function Navbar(){
     const { logout } = usePlayerData()
     const navigate = useNavigate()
+
     function handleLogoutClick(){
-        logout().then((success) => {
-            if(success){
-                navigate("/login") 
-            }
+        logout().then(() => {
+            navigate("/login") 
         })
     }
 

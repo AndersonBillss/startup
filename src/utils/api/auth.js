@@ -22,9 +22,14 @@ export async function loginUser(username, password){
 }
 
 export async function logoutUser(){
-    console.log("Logging out...") // API call here
+    const response = await fetch(`${apiUrl}/logout`, {
+        method: "DELETE",
+        headers: {'Content-Type': 'application/json'},
+        credentials: 'include',
+    })
     setLoggedIn(false)
-    return true
+    const responseJson = await response.json()
+    return [responseJson.ok, responseJson.msg]
 }
 
 export async function signupUser(username, password, kingdomName){

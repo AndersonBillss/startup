@@ -131,9 +131,14 @@ apiRoutes.post("/login", async(req, res) => {
     res.send({data: limitLoginUserData(targetUser)})
 })
 
+apiRoutes.delete("/logout", verifyUser, async(req, res) => {
+    clearAuthCookie(res, req.user)
+    res.status(200).send({msg: "Succesfully logged out"})
+})
+
 apiRoutes.put("/data", verifyUser, async(req, res) => {
     if(!req.body.data){
-        res.status(401).send({msg: "no data provided"})
+        res.status(401).send({msg: "No data provided"})
         return
     }
     const updated = await setUserData(req.user.id, req.body.data)
@@ -143,6 +148,7 @@ apiRoutes.put("/data", verifyUser, async(req, res) => {
     }
     res.send({data: limitLoginUserData(updated)})
 })
+
 apiRoutes.get("/data", verifyUser, async(req, res) => {
     res.send({data: limitLoginUserData(req.user)})
 })
