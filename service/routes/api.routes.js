@@ -126,17 +126,17 @@ apiRoutes.post("/login", async(req, res) => {
         return
     }
     if(!password){
-        res.status(401).send({msg: "No password sent"})
+        res.status(400).send({msg: "No password sent"})
         return
     }
     const targetUser = await findUser(username)
     if(targetUser === false){
-        res.status(401).send({msg: "Invalid username or password"})
+        res.status(400).send({msg: "Invalid username or password"})
         return
     }
     const correctPassword = await comparePassword(password, targetUser.hashedPassword)
     if(!correctPassword){
-        res.status(401).send({msg: "Invalid username or password"})
+        res.status(400).send({msg: "Invalid username or password"})
         return
     }
     setAuthCookie(res, targetUser)
@@ -150,12 +150,12 @@ apiRoutes.delete("/logout", verifyUser, async(req, res) => {
 
 apiRoutes.put("/data", verifyUser, async(req, res) => {
     if(!req.body.data){
-        res.status(401).send({msg: "No data provided"})
+        res.status(400).send({msg: "No data provided"})
         return
     }
-    const updated = await setUserData(req.user.id, req.body.data)
+    const updated = await setUserData(req.user.username, req.body.data)
     if(updated === false){
-        res.status(401).send({msg: "Invalid user id provided"})
+        res.status(400).send({msg: "Invalid user id provided"})
         return
     }
     res.send({data: limitLoginUserData(updated)})
@@ -174,16 +174,16 @@ apiRoutes.put("/attackUser", verifyUser, async(req, res) => {
     const target = req.body.target
     const soldiers = req.body.soldiers
     if(soldiers !== 0 && (!soldiers || soldiers < 0)){
-        res.status(401).send({msg: "number of soldiers must be greater than 1"})
+        res.status(400).send({msg: "number of soldiers must be greater than 1"})
         return
     }
     if(!target){
-        res.status(401).send({msg: "no target id specified"})
+        res.status(400).send({msg: "no target id specified"})
         return
     }
     const targetUser = await findUser(target)
     if(!targetUser){
-        res.status(401).send({msg: "Target user doesn't exist"})
+        res.status(400).send({msg: "Target user doesn't exist"})
         return
     }
     targetUser.soldiers -= soldiers
@@ -192,9 +192,9 @@ apiRoutes.put("/attackUser", verifyUser, async(req, res) => {
     res.send({data: otherUsers})
 })
 
-async function setUserData(userId, data){
+async function setUserData(username, data){
     for(const user of users){
-        if(user.id === userId){
+        if(user.username === username){
             for(const key of Object.keys(data)){
                 user[key] = data[key]
             }
