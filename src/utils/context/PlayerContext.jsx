@@ -7,26 +7,6 @@ const PlayerContext = createContext(null)
 
 // Use React's Context API to allow sharing of state
 export function PlayerStateProvider({ children }) {
-  
-    // useEffect(() => {
-    //   getPlayerData().then(([success, data]) => {
-    //     if(success){
-    //       setPlayerDataState(data)
-    //       setLoggedIn(true)
-    //     } else {
-    //       setLoggedIn(false)
-    //     }
-    //   })
-    //   connectWebSocket("MyUrl")
-    //   connectRecieveAttack((numSoldiers) => {
-    //     let newNumSoldiers = playerData.soldiers - numSoldiers
-    //     if(newNumSoldiers < 0){
-    //       newNumSoldiers = 0
-    //     }
-    //     setNumSoldiers(newNumSoldiers)
-    //   })
-    // },[])
-
     const [playerData, setPlayerDataState] = useState({
       id: "",
       username: "",

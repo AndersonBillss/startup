@@ -4,55 +4,68 @@ import { hashPassword, comparePassword } from '../utils/passwordAuth.js';
 import { v4 as uuid }  from "uuid";
 export const apiRoutes = Router();
 
-export const users = [
+export const users = [ // Mock data
     {
-        id: "1934856",
         username: "BenjaminFranklin",
         hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1!
         kingdomName: "Green Hill Caliphate",
-        kingdomImg: null,
+        kingdomImg: "https://th.bing.com/th/id/R.ff47da8ee8118d9dc4d394919c9d5fe5?rik=E38d%2bCaqdJ859g&riu=http%3a%2f%2fwww.nationalpedia.com%2fwp-content%2fuploads%2f2017%2f05%2fNational-Flag-of-the-United-States.jpg&ehk=t09O8Cipuyhrsr5CJmbZRUEemqMjuwY%2fVpsZ20N1eGM%3d&risl=&pid=ImgRaw&r=0",
         unlockedGames: [],
-        soldiers: 25,
+        soldiers: 999,
         token: null
     },
     {
-        id: "9864367",
         username: "ThomasJefferson",
         hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1!
         kingdomName: "Republic of Swift Computers",
-        kingdomImg: null,
+        kingdomImg: "https://fthmb.tqn.com/Q5HpXsZd1Adb9qQ0P0URZbajASA=/3865x2576/filters:fill(auto,1)/us-constitution-175495818-584222b55f9b5851e5878357.jpg",
         unlockedGames: [],
-        soldiers: 25,
+        soldiers: 45,
         token: null
     },
     {
-        id: "5293693",
         username: "JuliusCaesar",
         hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1!
         kingdomName: "Duchy of Furious Composers",
-        kingdomImg: null,
+        kingdomImg: "https://th.bing.com/th/id/OIP.0FjbbDw0u9lQJVhT8Zkv3gHaEU?rs=1&pid=ImgDetMain",
         unlockedGames: [],
-        soldiers: 25,
+        soldiers: 13,
         token: null
     },
     {
-        id: "0693485",
         username: "MikhialGorbachev",
         hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1!
         kingdomName: "Humble Sword Dominion",
-        kingdomImg: null,
+        kingdomImg: "https://th.bing.com/th/id/OIP.LKv90-dWJkU7TT-lQDPHDAHaEo?rs=1&pid=ImgDetMain",
         unlockedGames: [],
-        soldiers: 25,
+        soldiers: 250,
         token: null
     },
     {
-        id: "5347546956782",
-        username: "TestUser",
+        username: "GenghisKhan",
         hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1!
-        kingdomName: "Humble Sword Dominion",
+        kingdomName: "Empire of Good Greatness",
+        kingdomImg: "https://th.bing.com/th/id/R.202bae0e3abc85e993c887332ee7b74f?rik=vTneIZz2RmdjcQ&riu=http%3a%2f%2f3.bp.blogspot.com%2f-_gHEUPycLqk%2fUvn4W0hWR8I%2fAAAAAAAACCI%2fGs8Bb2w1N1A%2fs1600%2fGer%2b-%2bJH%2b(2).jpg&ehk=UTSBdtnCt70mDctsVIFYi99FN9cvjubZJvoDACVi9ck%3d&risl=&pid=ImgRaw&r=0",
+        unlockedGames: [],
+        soldiers: 10000,
+        token: null
+    },
+    {
+        username: "NicholasII",
+        hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1!
+        kingdomName: "Tsardom of Humble Fields",
+        kingdomImg: "https://www.publicdomainpictures.net/pictures/70000/velka/winter-palace-in-st-petersburg.jpg",
+        unlockedGames: [],
+        soldiers: 3,
+        token: null
+    },
+    {
+        username: "TestUser",
+        hashedPassword: "$2b$10$nkNUE4YoR/Lg9F/TIUxCueolFDiMbFdh5EuKhjGArnGOHHaS2KL1m", // Aa!11111
+        kingdomName: "Confederation of Calm Composers",
         kingdomImg: null,
         unlockedGames: [],
-        soldiers: 25,
+        soldiers: 0,
         token: null
     },
 ]
@@ -94,7 +107,6 @@ apiRoutes.post("/signup", async(req, res) => {
         return
     }
     const userSignupObject = {
-        id: uuid(),
         username: username,
         hashedPassword: hashedPassword,
         kingdomName: kingdomName,
@@ -153,6 +165,33 @@ apiRoutes.get("/data", verifyUser, async(req, res) => {
     res.send({data: limitLoginUserData(req.user)})
 })
 
+apiRoutes.get("/getUsers", verifyUser, async(req, res) => {
+    const otherUsers = await getUsers([req.user])
+    res.send({data: otherUsers})
+})
+
+apiRoutes.put("/attackUser", verifyUser, async(req, res) => {
+    const target = req.body.target
+    const soldiers = req.body.soldiers
+    if(soldiers !== 0 && (!soldiers || soldiers < 0)){
+        res.status(401).send({msg: "number of soldiers must be greater than 1"})
+        return
+    }
+    if(!target){
+        res.status(401).send({msg: "no target id specified"})
+        return
+    }
+    const targetUser = await findUser(target)
+    if(!targetUser){
+        res.status(401).send({msg: "Target user doesn't exist"})
+        return
+    }
+    targetUser.soldiers -= soldiers
+
+    const otherUsers = await getUsers([req.user])
+    res.send({data: otherUsers})
+})
+
 async function setUserData(userId, data){
     for(const user of users){
         if(user.id === userId){
@@ -181,10 +220,26 @@ async function findAuthorized(token){
     }
     return false
 }
+async function getUsers(excludedUsers){
+    function userIncluded(targetUser, excludedUsers){
+        for(const user of excludedUsers){
+            if(user.username === targetUser.username){
+                return true
+            }
+        }
+        return false
+    }
+    const resultUsers = []
+    for(const user of users){
+        if(!userIncluded(user, excludedUsers)){
+            resultUsers.push(limitGetUserData(user))
+        }
+    }
+    return resultUsers
+}
 
 function limitLoginUserData(user){
     return{
-        id: user.id,
         username: user.username,
         kingdomName: user.kingdomName,
         kingdomImg: user.kingdomImg,
@@ -195,7 +250,6 @@ function limitLoginUserData(user){
 }
 function limitGetUserData(user){
     return{
-        id: user.id,
         username: user.username,
         kingdomName: user.kingdomName,
         kingdomImg: user.kingdomImg,

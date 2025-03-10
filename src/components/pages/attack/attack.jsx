@@ -18,7 +18,7 @@ export default function Attack(){
             return
         }
         setNumSoldiers(numSoldiers-attackAmount)
-        sendAttack(player.id, attackAmount)
+        sendAttack(player.username, attackAmount)
     }
 
     return(
@@ -32,6 +32,8 @@ export default function Attack(){
 
                 <h3 className="center">Choose who to attack</h3>
                 <div className="center">[this data will updated when there are changes via websocket]</div>
+                {
+                players?
                 <div className="attack-table">
                     {
                     players.sort((a,b) => b.soldiers-a.soldiers).map((player, index) => {
@@ -39,7 +41,7 @@ export default function Attack(){
                             <div key={index} className="table-row">
                                 <div className="table-section">
                                     <h4>
-                                        {player.name}
+                                        {player.username}
                                     </h4>
                                     <div className="soldiers-display">
                                         Soldiers: {player.soldiers}
@@ -53,6 +55,12 @@ export default function Attack(){
                     })
                     }
                 </div>
+                :
+                <div>
+                    Loading...
+                </div>
+                }
+                
             </div>
         </>
     )
