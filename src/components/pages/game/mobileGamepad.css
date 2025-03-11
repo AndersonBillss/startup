@@ -1,10 +1,18 @@
 :root{
-    --gamepad-button-width: 50px;
+    --gamepad-button-width: 60px;
 }
-
+.gamepad{
+    background-color: var(--primary-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    border-radius: 10px;
+}
 .game-arrow{
     width: var(--gamepad-button-width);
     height: var(--gamepad-button-width);
+    top: 0;
 }
 .gamepad-row{
     display: flex;
@@ -27,9 +35,18 @@
 .gamepad-down{
     transform: rotate(90deg);
 }
-.gamepad-mid{
+.gamepad-middle{
     width: calc(var(--gamepad-button-width) * 3/4);
     height: calc(var(--gamepad-button-width) * 3/4);
     border-radius: 50%;
     background-color: #1f1f1f;
+}
+.game.button{
+    width: var(--gamepad-button-width);
+    height: var(--gamepad-button-width);
+    padding: 0;
+    margin: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
