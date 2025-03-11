@@ -1,0 +1,35 @@
+:root{
+    --gamepad-button-width: 50px;
+}
+
+.game-arrow{
+    width: var(--gamepad-button-width);
+    height: var(--gamepad-button-width);
+}
+.gamepad-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gamepad-row *{
+    width: calc(var(--gamepad-button-width) + 12px);
+}
+
+.gamepad-up{
+    transform: rotate(270deg);
+}
+.gamepad-right{
+    transform: rotate(0deg);
+}
+.gamepad-left{
+    transform: rotate(180deg);
+}
+.gamepad-down{
+    transform: rotate(90deg);
+}
+.gamepad-mid{
+    width: calc(var(--gamepad-button-width) * 3/4);
+    height: calc(var(--gamepad-button-width) * 3/4);
+    border-radius: 50%;
+    background-color: #1f1f1f;
+}

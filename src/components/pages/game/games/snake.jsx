@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { usePlayerData } from "../../../../utils/context/PlayerContext"
+import MobileGamepad from "../mobileGamepad";
 import "./snake.css"
 
 export default function Snake(){
@@ -173,6 +174,7 @@ export default function Snake(){
             </div>
             {!playingRef.current && <button className="button" onClick={startGame}>Start Game</button>}
             <h3 className="center">{lose && "You Lose! "} Total Points: {getTotalPoints()}</h3>
+            <MobileGamepad />
         </>
     )
     function getCellType(row, col){

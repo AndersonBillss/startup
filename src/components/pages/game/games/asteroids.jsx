@@ -2,6 +2,7 @@ import "./asteroids.css"
 import React from "react";
 import { usePlayerData } from "../../../../utils/context/PlayerContext"
 import { useRef, useState } from "react"
+import MobileGamepad from "../mobileGamepad";
 
 export function Asteroids(){
     const canvasRef = useRef(null); // Single ref for canvas
@@ -65,6 +66,7 @@ function Controls({ canvasRef }){
                 </button>
             </>
             }
+            <MobileGamepad />
         </>
     )
 }
