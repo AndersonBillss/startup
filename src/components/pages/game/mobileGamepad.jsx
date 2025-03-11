@@ -32,8 +32,10 @@ export default function MobileGamepad({
                     <button 
                     className="game button gamepad-up"
                     onMouseDown={upArrowDown}
+                    onTouchStart={upArrowDown}
                     onMouseUp={upArrowUp} 
                     onMouseLeave={upArrowUp}
+                    onTouchEnd={upArrowUp}
                     onClick={upArrowPress}
                     >
                         <GameArrow />
@@ -43,8 +45,10 @@ export default function MobileGamepad({
                     <button 
                     className="game button gamepad-left"
                     onMouseDown={leftArrowDown}
+                    onTouchStart={leftArrowDown}
                     onMouseUp={leftArrowUp} 
                     onMouseLeave={leftArrowUp}
+                    onTouchEnd={leftArrowUp}
                     onClick={leftArrowPress}
                     >
                         <GameArrow />
@@ -52,8 +56,10 @@ export default function MobileGamepad({
                     <button 
                     className="game button gamepad-mid"
                     onMouseDown={middleDown}
+                    onTouchStart={middleDown}
                     onMouseUp={middleUp} 
                     onMouseLeave={middleUp}
+                    onTouchEnd={middleUp}
                     onClick={middlePress}
                     >
                         <div className="gamepad-middle">
@@ -63,8 +69,10 @@ export default function MobileGamepad({
                     <button 
                     className="game button gamepad-right"
                     onMouseDown={rightArrowDown}
+                    onTouchStart={rightArrowDown}
                     onMouseUp={rightArrowUp} 
                     onMouseLeave={rightArrowUp}
+                    onTouchEnd={rightArrowUp}
                     onClick={rightArrowPress}
                     >
                         <GameArrow />
@@ -74,8 +82,10 @@ export default function MobileGamepad({
                     <button 
                     className="game button gamepad-down"
                     onMouseDown={downArrowDown}
+                    onTouchStart={downArrowDown}
                     onMouseUp={downArrowUp} 
                     onMouseLeave={downArrowUp}
+                    onTouchEnd={downArrowUp}
                     onClick={downArrowPress}
                     >
                         <GameArrow />

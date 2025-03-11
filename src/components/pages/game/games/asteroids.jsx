@@ -5,11 +5,11 @@ import { useRef, useState } from "react"
 import MobileGamepad from "../mobileGamepad";
 
 export function Asteroids(){
-    const canvasRef = useRef(null); // Single ref for canvas
+    const canvasRef = useRef(null)
     return(
         <div className="game">
             <Game canvasRef={canvasRef} />
-            <Controls canvasRef={canvasRef} />
+            <Controls canvasRef={canvasRef}  />
         </div>
     )
 }
@@ -25,6 +25,7 @@ function Controls({ canvasRef }){
     const [health, setHealth] = useState(null)
     const [score, setScore] = useState(null) 
     const {numSoldiers, setNumSoldiers} = usePlayerData()
+    const gamepadControls = useRef(null)
 
     function addSoldiers(n){
         setNumSoldiers(numSoldiers + n)
@@ -33,7 +34,7 @@ function Controls({ canvasRef }){
     function startGame(){
         if(!running.current){
             running.current = true
-            run(canvasRef.current, setHealth, setScore, addSoldiers)
+            gamepadControls.current = run(canvasRef.current, setHealth, setScore, addSoldiers, gamepadControls)
         }
     }
     if(health < 1 && health !== null){
@@ -66,7 +67,14 @@ function Controls({ canvasRef }){
                 </button>
             </>
             }
-            <MobileGamepad />
+            <MobileGamepad 
+            upArrowDown={gamepadControls.current ? gamepadControls.current.gamepadUp.down : () => {}}
+            middleDown={gamepadControls.current ? gamepadControls.current.gamepadMiddle.down : () => {}}
+            leftArrowDown={gamepadControls.current ? gamepadControls.current.gamepadLeft.down : () => {}}
+            leftArrowUp={gamepadControls.current ? gamepadControls.current.gamepadLeft.up : () => {}}
+            rightArrowDown={gamepadControls.current ? gamepadControls.current.gamepadRight.down : () => {}}
+            rightArrowUp={gamepadControls.current ? gamepadControls.current.gamepadRight.up : () => {}}
+            />
         </>
     )
 }
@@ -74,7 +82,7 @@ function Controls({ canvasRef }){
 
 
 
-const keys = {}; // Object to store key states
+let keys = {}; // Object to store key states
 
 function handleKeyDown(event) {
     keys[event.code] = true;
@@ -83,7 +91,7 @@ function handleKeyUp(event) {
     keys[event.code] = false;
 }
 window.addEventListener("keydown", (e) => {
-    if(e.code === "Space" || e.code == "ArrowUp"){
+    if(e.code === "Space" || e.code == "ArrowUp" || e.code === "KeyW"){
         e.preventDefault()
         shootMissile()
     }
@@ -122,7 +130,7 @@ let currentScore = 0
 let currentHealth = 5
 let gameStopped = true
 
-function run(canvasElement, updateHealth, updateScore, addSoldiers){
+function run(canvasElement, updateHealth, updateScore, addSoldiers, gamepad){
     currentHealth = 5
     currentScore = 0
     updateScore(currentScore)
@@ -132,9 +140,17 @@ function run(canvasElement, updateHealth, updateScore, addSoldiers){
     canvas = canvasElement
     ctx = canvas.getContext("2d");
     shipPosition = canvas.width/2
+    keys = {}
     updateHealth(currentHealth)
     gameStopped = false
     gameLoop()
+    const gamepadControls = {
+        gamepadMiddle: {down: shootMissile},
+        gamepadUp: {down: shootMissile},
+        gamepadLeft: {up: () => {keys["ArrowLeft"] = false}, down: () => {keys["ArrowLeft"] = true}},
+        gamepadRight: {up: () => {keys["ArrowRight"] = false}, down: () => {keys["ArrowRight"] = true}},
+    }
+    return gamepadControls
 }
 
 function stopGame(){
@@ -157,10 +173,10 @@ function gameLoop(){
 }
 
 function shootMissile(){
-    // No more than 3 missiles at a time
     if(!canvas){
         return
     }
+    // No more than 3 missiles at a time
     if(missiles.length < 3){
         missiles.push({
             top: (canvas.height-10),
@@ -221,20 +237,20 @@ function gameUpdate(){
     if(timeSinceLastMove > timeToSpeedUp){
         shipSpeed = shipFastSpeed
     }
-    if(keys["ArrowRight"]){
+    if(keys["ArrowRight"] || keys["KeyD"]){
         shipPosition += shipSpeed
         // Snap Ship to edge of canvas if ship is too far
         if(shipPosition > canvas.width){
             shipPosition = canvas.width
         }
     }
-    if(keys["ArrowLeft"]){
+    if(keys["ArrowLeft"] || keys["KeyA"]){
         shipPosition -= shipSpeed
         if(shipPosition < 0){
             shipPosition = 0
         }
     }
-    if(!keys["ArrowLeft"] && !keys["ArrowRight"]){
+    if(!keys["ArrowLeft"] && !keys["ArrowRight"] && !keys["KeyD"] && !keys["KeyA"]){
         lastMoveTime = Date.now()
     }
 

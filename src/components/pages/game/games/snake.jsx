@@ -174,7 +174,12 @@ export default function Snake(){
             </div>
             {!playingRef.current && <button className="button" onClick={startGame}>Start Game</button>}
             <h3 className="center">{lose && "You Lose! "} Total Points: {getTotalPoints()}</h3>
-            <MobileGamepad />
+            <MobileGamepad 
+            upArrowDown={() => {directionRef.current = "up"}}
+            downArrowDown={() => {directionRef.current = "down"}}
+            leftArrowDown={() => {directionRef.current = "left"}}
+            rightArrowDown={() => {directionRef.current = "right"}}
+            />
         </>
     )
     function getCellType(row, col){
