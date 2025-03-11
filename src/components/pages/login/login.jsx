@@ -64,7 +64,6 @@ export default function Login(){
             <span className="secondary-color">Lab</span>
         </div>
         <h2 className="title">Login</h2>
-        [These will be kept in a database]
         <form className="column-center"> 
             <label>Username</label>
             <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" autoComplete="username"/>

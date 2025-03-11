@@ -1,8 +1,7 @@
-const apiUrl = "http://localhost:3000/api"
 let loggedIn = false
 
 export async function loginUser(username, password){
-    const response = await fetch(`${apiUrl}/login`, {
+    const response = await fetch(`/api/login`, {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         credentials: 'include',
@@ -22,7 +21,7 @@ export async function loginUser(username, password){
 }
 
 export async function logoutUser(){
-    const response = await fetch(`${apiUrl}/logout`, {
+    const response = await fetch(`/api/logout`, {
         method: "DELETE",
         headers: {'Content-Type': 'application/json'},
         credentials: 'include',
@@ -33,7 +32,7 @@ export async function logoutUser(){
 }
 
 export async function signupUser(username, password, kingdomName){
-    const response = await fetch(`${apiUrl}/signup`, {
+    const response = await fetch(`/api/signup`, {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({

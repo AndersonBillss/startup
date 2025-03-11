@@ -1,7 +1,6 @@
-const apiUrl = "http://localhost:3000/api"
 
 export async function updatePlayerData(playerData){
-    const response = await fetch(`${apiUrl}/data`, {
+    const response = await fetch(`/api/data`, {
         method: "PUT",
         credentials: "include",
         headers: {
@@ -17,7 +16,7 @@ export async function updatePlayerData(playerData){
     }
 }
 export async function getPlayerData(){
-    const response = await fetch(`${apiUrl}/data`, {
+    const response = await fetch(`/api/data`, {
         method: "GET",
         credentials: "include",
         headers: {'Content-Type': 'application/json'}

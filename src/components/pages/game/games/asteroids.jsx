@@ -1,10 +1,16 @@
 import "./asteroids.css"
-import React from "react";
+import React, {useEffect} from "react";
 import { usePlayerData } from "../../../../utils/context/PlayerContext"
 import { useRef, useState } from "react"
 import MobileGamepad from "../mobileGamepad";
 
 export function Asteroids(){
+    //Clear event listeners after exiting page
+    useEffect(() => {      
+        return () => {
+          removeEventListeners();
+        };
+    }, []);
     const canvasRef = useRef(null)
     return(
         <div className="game">
@@ -90,14 +96,13 @@ function handleKeyDown(event) {
 function handleKeyUp(event) {
     keys[event.code] = false;
 }
-window.addEventListener("keydown", (e) => {
+const windowKeydownEvent = (e) => {
     if(e.code === "Space" || e.code == "ArrowUp" || e.code === "KeyW"){
         e.preventDefault()
         shootMissile()
     }
     handleKeyDown(e)
-});
-window.addEventListener("keyup", handleKeyUp);
+}
 
 
 let ctx
@@ -129,8 +134,15 @@ let addSoldiersFunction
 let currentScore = 0
 let currentHealth = 5
 let gameStopped = true
+function removeEventListeners(){
+    window.removeEventListener("keydown", windowKeydownEvent);
+    window.removeEventListener("keyup", handleKeyUp);
+}
 
 function run(canvasElement, updateHealth, updateScore, addSoldiers, gamepad){
+    window.addEventListener("keydown", windowKeydownEvent);
+    window.addEventListener("keyup", handleKeyUp);
+
     currentHealth = 5
     currentScore = 0
     updateScore(currentScore)
@@ -156,6 +168,7 @@ function run(canvasElement, updateHealth, updateScore, addSoldiers, gamepad){
 function stopGame(){
     if(gameStopped) return
     addSoldiersFunction(currentScore)
+    removeEventListeners()
     gameStopped = true
     missiles = []
     asteroids = []
