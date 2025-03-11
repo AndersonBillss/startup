@@ -36,10 +36,19 @@
     transform: rotate(90deg);
 }
 .gamepad-middle{
-    width: calc(var(--gamepad-button-width) * 3/4);
-    height: calc(var(--gamepad-button-width) * 3/4);
+    width: calc(var(--gamepad-button-width) * 7/8);
+    height: calc(var(--gamepad-button-width) * 7/8);
     border-radius: 50%;
     background-color: #1f1f1f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gamepad-hollow{
+    background-color: var(--gray-light);
+    width: calc(var(--gamepad-button-width) * 7/8 - 13px);
+    height: calc(var(--gamepad-button-width) * 7/8 - 13px);
+    border-radius: 50%;
 }
 .game.button{
     width: var(--gamepad-button-width);

@@ -29,25 +29,57 @@ export default function MobileGamepad({
         <div className="gamepad">
             <div className="column">
                 <div className="gamepad-row">
-                    <div className="game button gamepad-up">
+                    <button 
+                    className="game button gamepad-up"
+                    onMouseDown={upArrowDown}
+                    onMouseUp={upArrowUp} 
+                    onMouseLeave={upArrowUp}
+                    onClick={upArrowPress}
+                    >
                         <GameArrow />
-                    </div>
+                    </button>
                 </div>
                 <div className="gamepad-row">
-                    <div className="game button gamepad-left">
+                    <button 
+                    className="game button gamepad-left"
+                    onMouseDown={leftArrowDown}
+                    onMouseUp={leftArrowUp} 
+                    onMouseLeave={leftArrowUp}
+                    onClick={leftArrowPress}
+                    >
                         <GameArrow />
-                    </div>
-                    <div className="game button gamepad-mid">
-                        <div className="gamepad-middle" />
-                    </div>
-                    <div className="game button gamepad-right">
+                    </button>
+                    <button 
+                    className="game button gamepad-mid"
+                    onMouseDown={middleDown}
+                    onMouseUp={middleUp} 
+                    onMouseLeave={middleUp}
+                    onClick={middlePress}
+                    >
+                        <div className="gamepad-middle">
+                            <div className="gamepad-hollow" />
+                        </div>
+                    </button>
+                    <button 
+                    className="game button gamepad-right"
+                    onMouseDown={rightArrowDown}
+                    onMouseUp={rightArrowUp} 
+                    onMouseLeave={rightArrowUp}
+                    onClick={rightArrowPress}
+                    >
                         <GameArrow />
-                    </div>
+                    </button>
                 </div>
                 <div className="gamepad-row">
-                    <div className="game button gamepad-down">
+                    <button 
+                    className="game button gamepad-down"
+                    onMouseDown={downArrowDown}
+                    onMouseUp={downArrowUp} 
+                    onMouseLeave={downArrowUp}
+                    onClick={downArrowPress}
+                    >
                         <GameArrow />
-                    </div>
+                    </button>
                 </div>
             </div>
         </div>
