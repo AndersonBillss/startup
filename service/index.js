@@ -12,10 +12,10 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors({credentials: true}))
 
-export const apiRoutes = Router();
-
-app.use('/api', apiRoutes);
 app.use(express.static('public'));
+
+export const apiRoutes = Router();
+app.use('/api', apiRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
@@ -88,7 +88,7 @@ export const users = [ // Mock data
     },
 ]
 
-apiRoutes.get("/ping", (req, res) => {
+apiRoutes.get("/ping", (_req, res) => {
     res.send({msg: "Api routes working"})
 })
 
@@ -209,6 +209,10 @@ apiRoutes.put("/attackUser", verifyUser, async(req, res) => {
     const otherUsers = await getUsers([req.user])
     res.send({data: otherUsers})
 })
+
+app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+});
 
 async function setUserData(username, data){
     for(const user of users){
