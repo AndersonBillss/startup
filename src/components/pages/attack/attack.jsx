@@ -39,10 +39,17 @@ export default function Attack(){
                     players.sort((a,b) => b.soldiers-a.soldiers).map((player, index) => {
                         return(
                             <div key={index} className="table-row">
+                                <img className="kingdom-img" src={player.kingdomImg} />
                                 <div className="table-section">
-                                    <h4>
-                                        {player.username}
-                                    </h4>
+                                    <div className="player-top">
+                                        <img className="small-kingdom-img" src={player.kingdomImg} />
+                                        <h4 className="player-username">
+                                            {player.username}
+                                        </h4>
+                                    </div>
+                                    <p className="kingom-title">
+                                        {player.kingdomName}
+                                    </p>
                                     <div className="soldiers-display">
                                         Soldiers: {player.soldiers}
                                     </div>
