@@ -28,3 +28,7 @@ Adding React to my project was straightforward. I like that I can reuse and impo
 ## React Part 2 Notes
 
 I had a lot of fun with this part. State is a difficult concept but I feel like I have mastered it. In addition to useState and useEffect, I used React's Context API to share important state between my pages. I mocked all of the services which required me to think about how I want these services to work. Although working with React was difficult, I can't wait to get started on the server!
+
+## Service Notes
+
+It's super cool to have a service connecting players. I feel like I really improved my skills in designing APIs. The hardest part about creating the API was verification. I have never used cookies for verification; I usually just use localstorage. But I actually found this method very simple once I figured it out. Now that my server is hosted, I can finally test it out with other people!

@@ -118,11 +118,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
+- [X] **Node.js/Express HTTP service** - I use Express to handle HTTP requests.
+- [X] **Static middleware for frontend** - I use middleware to verify users before processing their requests.
+- [X] **Calls to third party endpoints** - I call Unsplash's API to get images for my users to use.
+- [X] **Backend service endpoints** - I have several endpoints for my users to access.
+- [X] **Frontend calls service endpoints** - I used fetch to asynchronously call endpoints on my service.
 
 ## 🚀 DB/Login deliverable
 
