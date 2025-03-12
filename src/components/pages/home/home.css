@@ -17,6 +17,7 @@
 }
 .img-container{
     position: relative;
+    margin-bottom: 15px;
 }
 .selected-title{
     position: absolute;
@@ -27,4 +28,11 @@
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     transform: translate(-50%, -50%);
+}
+.img-tab-select{
+    display: flex;
+    justify-content: space-between;
+}
+.tab{
+    font-size: 24px;
 }

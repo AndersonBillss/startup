@@ -1,4 +1,5 @@
-export async function getImages(){
+// Use some hardcoded images
+export async function getBuildingImages(){
     const imageUrls = [ 
         "https://wallpaperaccess.com/full/41221.jpg",
         "https://www.roadaffair.com/wp-content/uploads/2019/01/lake-bled-slovenia-shutterstock_768078295.jpg",
@@ -12,6 +13,32 @@ export async function getImages(){
         "https://th.bing.com/th/id/OIP.wKk5PoVfqlrIezpn9qBsjwHaE8?w=360&h=196&c=7&r=0&o=5&dpr=1.3&pid=1.7",
         "https://www.pohnpei-adventure.com/wp-content/uploads/nan-madol_007.jpg",
         "https://cloudfront.safaribookings.com/blog/2021/07/03-top-10-best-things-to-do-in-zimbabwe-BW-1600px.jpg"
-    ] // Replace this with an API call
+    ] 
+
+    return imageUrls
+}
+
+// Get images from the Unsplash API
+export async function getNatureImages(){
+    const imageUrls = []
+    const res =  await fetch("https://api.unsplash.com/search/photos?query=Nature&client_id=SivsZSkWHExmXUgDOU3vHQ2EZ9ma7kGMHUkX71LCoVQ&per_page=12")
+    const apiJson = await res.json()
+
+    for(const img of apiJson.results){
+        const url = img.urls.regular
+        imageUrls.push(url)
+    }
+    return imageUrls
+}
+
+export async function getAnimalImages(){
+    const imageUrls = []
+    const res =  await fetch("https://api.unsplash.com/search/photos?query=Animal&client_id=SivsZSkWHExmXUgDOU3vHQ2EZ9ma7kGMHUkX71LCoVQ&per_page=12")
+    const apiJson = await res.json()
+
+    for(const img of apiJson.results){
+        const url = img.urls.regular
+        imageUrls.push(url)
+    }
     return imageUrls
 }

@@ -4,14 +4,29 @@ import { usePlayerData } from "../../../utils/context/PlayerContext"
 import '../../../styles.css'
 import './home.css'
 import { toTitleCase } from "../../../utils/titlecase"
-import { getImages } from "../../../utils/api/imageService"
+import { getBuildingImages, getNatureImages, getAnimalImages } from "../../../utils/api/imageService"
 
 export default function Home(){
     const {username, kingdomName, kingdomImg, setKingdomImg} = usePlayerData()
-    const [imageUrls, setImageUrls] = useState([])
+    const [buildingImageUrls, setBuildingImageUrls] = useState([])
+    const [natureImgUrls, setNatureImgUrls] = useState([])
+    const [animalImgUrls, setAnimalImgUrls] = useState([])
+    const [selectedTab, setSelectedTab] = useState("buildings")
+    const images = {
+        "buildings": buildingImageUrls,
+        "nature": natureImgUrls,
+        "animals": animalImgUrls,
+    }
+    
     useEffect(() => {
-        getImages().then(images => {
-            setImageUrls(images)
+        getBuildingImages().then(images => {
+            setBuildingImageUrls(images)
+        })
+        getNatureImages().then(images => {
+            setNatureImgUrls(images)
+        })
+        getAnimalImages().then(images => {
+            setAnimalImgUrls(images)
         })
     },[])
     return(
@@ -28,8 +43,14 @@ export default function Home(){
                     </img>
                     <h2 className="selected-title">{toTitleCase(kingdomName)}</h2>
                 </div>
+                <p>Select a background image</p>
+                <div className="img-tab-select">
+                    <button className="button" onClick={() => setSelectedTab("buildings")}><div className="tab">Buildings</div></button>
+                    <button className="button" onClick={() => setSelectedTab("nature")}><div className="tab">Nature</div></button>
+                    <button className="button" onClick={() => setSelectedTab("animals")}><div className="tab">Animals</div></button>
+                </div>
                 <div className="images">
-                    {imageUrls.map((url, index) => {
+                    {images[selectedTab].map((url, index) => {
                         return (
                         <img 
                         key={index} 
