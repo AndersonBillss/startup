@@ -38,8 +38,6 @@ export default function EarnMoney(){
             <div className="page">
                 <div className="main title">Welcome, {username}!</div> 
                 <h2 className="title center">Earn Money</h2>
-                <div className="center">[Use third party API to allow users to select the photo for their civilization]</div>
-                <div className="center">[kingdom name and background image will be stored in a database]</div>
                 <p id="soldiers">Soldiers: {numSoldiers}</p>
                 {
                     games.map((game, index) => {

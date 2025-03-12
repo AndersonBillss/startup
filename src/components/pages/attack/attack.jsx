@@ -31,7 +31,7 @@ export default function Attack(){
                 <h2 className="title center">Attack</h2>
 
                 <h3 className="center">Choose who to attack</h3>
-                <div className="center">[this data will updated when there are changes via websocket]</div>
+                <div className="center">[this data will updated when there are changes via websocket, but for now I am simulating attacks with POST requests]</div>
                 {
                 players?
                 <div className="attack-table">
