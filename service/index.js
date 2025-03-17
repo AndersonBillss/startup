@@ -1,10 +1,10 @@
-import express from 'express';
-import { Router } from 'express';
-import cors from 'cors'
-import cookieParser from "cookie-parser"
-import { v4 as uuid }  from "uuid";
-import bcrypt from 'bcrypt';
-import db from './database.js';
+const express = require('express')
+const { Router } = require('express')
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
+const uuid = require('uuid').v4
+const bcrypt = require("bcrypt")
+const db = require('./database.js')
 
 // Default port
 let port = 4000;
@@ -23,7 +23,7 @@ app.use(cors({credentials: true}))
 
 app.use(express.static('public'));
 
-export const apiRoutes = Router();
+const apiRoutes = Router();
 app.use('/api', apiRoutes);
 
 app.listen(port, () => {
@@ -186,18 +186,18 @@ function clearAuthCookie(res, user) {
 }
 
 
-export async function hashPassword(pw){
+async function hashPassword(pw){
     const saltRounds = 10
     const hashedPw = await bcrypt.hash(pw, saltRounds)
     return hashedPw
 }
 
-export async function comparePassword(pw, hashedPw){
+async function comparePassword(pw, hashedPw){
     const match = await bcrypt.compare(pw, hashedPw)
     return match
 }
 
-export function validateUsername(username) {
+function validateUsername(username) {
     const minLength = 3
     const maxLength = 20
     const regex = /^[a-zA-Z0-9_]+$/
@@ -211,7 +211,7 @@ export function validateUsername(username) {
     return true
 }
 
-export function validatePassword(password) {
+function validatePassword(password) {
     const minLength = 8
     const hasUpperCase = /[A-Z]/.test(password)
     const hasLowerCase = /[a-z]/.test(password)

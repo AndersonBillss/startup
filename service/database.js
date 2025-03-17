@@ -1,9 +1,16 @@
+const { MongoClient } = require('mongodb')
+const config = require('./dbConfig.json')
+
 const flags = process.argv
 const devEnvironment = flags.indexOf("--configuration=dev") !== -1;
 
+const url = devEnvironment ? `mongodb://localhost:27017` : `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+const client = new MongoClient(url);
+const database = client.db('webProgramming260Startup');
+const userCollection = database.collection('user');
 
 
-export const users = [ // Mock data
+const users = [ // Mock data
     {
         username: "BenjaminFranklin",
         hashedPassword: "$2b$10$ZFgPpm3Pg5NBWrMzJx.M7.ju/whI.0AWlDBOy61ZGuxUt1itJyg9W", // goodPassword1!
@@ -141,7 +148,18 @@ function limitGetUserData(user){
     }
 }
 
-const db = {
+// const db = {
+//     addUser,
+//     setUserData,
+//     getUsers,
+//     findAuthorized,
+//     findUser,
+//     limitGetUserData,
+//     limitLoginUserData,
+//     deleteCookie
+// }//!
+
+module.exports = {
     addUser,
     setUserData,
     getUsers,
@@ -151,4 +169,3 @@ const db = {
     limitLoginUserData,
     deleteCookie
 }
-export default db
