@@ -181,7 +181,8 @@ async function verifyUser(req, res, next){
 
 function clearAuthCookie(res, user) {
     delete user.token;
-    res.clearCookie('token');
+    db.deleteCookie(user.username)
+    res.clearCookie('token')
 }
 
 

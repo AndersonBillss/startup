@@ -117,6 +117,10 @@ async function getUsers(excludedUsers){
 async function addUser(user){
     users.push(user)
 }
+async function deleteCookie(username){
+    const targetUser = await findUser(username);
+    targetUser.token = null
+}
 
 function limitLoginUserData(user){
     return{
@@ -144,6 +148,7 @@ const db = {
     findAuthorized,
     findUser,
     limitGetUserData,
-    limitLoginUserData
+    limitLoginUserData,
+    deleteCookie
 }
 export default db
