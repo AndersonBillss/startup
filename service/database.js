@@ -89,12 +89,11 @@ async function setUserData(username, data){
 }
 
 async function findUser(username){
-    for(const user of users){
-        if(user.username === username){
-            return user
-        }
+    try{
+        return userCollection.findOne({ username });
+    } catch(error){
+        throw error
     }
-    return false
 }
 async function findAuthorized(token){
     for(const user of users){

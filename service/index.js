@@ -80,6 +80,7 @@ apiRoutes.post("/signup", async(req, res) => {
     } catch(error){
         res.status(500).send({msg: "Internal server error"})
         console.error(error)
+        return
     }
 })
 
@@ -94,8 +95,15 @@ apiRoutes.post("/login", async(req, res) => {
         res.status(400).send({msg: "No password sent"})
         return
     }
-    const targetUser = await db.findUser(username)
-    if(targetUser === false){
+    let targetUser
+    try{
+        targetUser = await db.findUser(username)
+    } catch(error){
+        res.status(500).send({msg: "Internal server error"})
+        console.error(error)
+        return
+    }
+    if(targetUser === null){
         res.status(400).send({msg: "Invalid username or password"})
         return
     }
