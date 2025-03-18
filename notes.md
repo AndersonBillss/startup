@@ -32,3 +32,7 @@ I had a lot of fun with this part. State is a difficult concept but I feel like 
 ## Service Notes
 
 It's super cool to have a service connecting players. I feel like I really improved my skills in designing APIs. The hardest part about creating the API was verification. I have never used cookies for verification; I usually just use localstorage. But I actually found this method very simple once I figured it out. Now that my server is hosted, I can finally test it out with other people!
+
+## DB Notes
+
+This was an easier deliverable. I seperated functions that access/manipulate data into a seperate file. From there, it was just a matter of replacing functions with database versions one by one. It is really cool to be able to persist data like this because it will allow me to roll out updates without resetting user data.
