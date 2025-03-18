@@ -121,9 +121,15 @@ async function getUsers(excludedUsers){
     }
     return resultUsers
 }
-async function addUser(user){
-    users.push(user)
+
+async function addUser(user){    
+    try {
+        await userCollection.insertOne(user);
+    } catch (error) {
+        throw error;
+    }
 }
+
 async function deleteCookie(username){
     const targetUser = await findUser(username);
     targetUser.token = null

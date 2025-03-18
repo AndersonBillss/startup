@@ -74,8 +74,13 @@ apiRoutes.post("/signup", async(req, res) => {
         unlockedGames: [],
         soldiers: 0
     }
-    await db.addUser(userSignupObject)
-    res.send({msg: "success"})
+    try{
+        await db.addUser(userSignupObject)
+        res.send({msg: "success"})
+    } catch(error){
+        res.status(500).send({msg: "Internal server error"})
+        console.error(error)
+    }
 })
 
 apiRoutes.post("/login", async(req, res) => {
