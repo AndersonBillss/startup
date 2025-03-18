@@ -26,14 +26,14 @@ export default function Snake(){
 
     useEffect(() => {
         const handleKeyDown = (e) => {
-            if (e.key === "ArrowRight") directionRef.current = "right";
-            if (e.key === "ArrowLeft") directionRef.current = "left";
-            if (e.key === "ArrowUp") directionRef.current = "up";
-            if (e.key === "ArrowDown") directionRef.current = "down";
-            if (e.key === "d") directionRef.current = "right";
-            if (e.key === "a") directionRef.current = "left";
-            if (e.key === "w") directionRef.current = "up";
-            if (e.key === "s") directionRef.current = "down";
+            if (e.key === "ArrowRight"){e.preventDefault(); directionRef.current = "right"};
+            if (e.key === "ArrowLeft"){e.preventDefault(); directionRef.current = "left"};
+            if (e.key === "ArrowUp"){e.preventDefault(); directionRef.current = "up"};
+            if (e.key === "ArrowDown"){e.preventDefault(); directionRef.current = "down"};
+            if (e.key === "d"){e.preventDefault(); directionRef.current = "right"};
+            if (e.key === "a"){e.preventDefault(); directionRef.current = "left"};
+            if (e.key === "w"){e.preventDefault(); directionRef.current = "up"};
+            if (e.key === "s"){e.preventDefault(); directionRef.current = "down"};
         };
 
         document.addEventListener("keydown", handleKeyDown);
@@ -118,7 +118,14 @@ export default function Snake(){
         for (let row = 0; row < gridHeight; row++) {
             for (let col = 0; col < gridWidth; col++) {
                 const isOccupied = currSnake.some(([sRow, sCol]) => sRow === row && sCol === col);
-                if (!isOccupied) {
+                const head = snake[0]
+                let newHead;
+                if(directionRef.current === "right") newHead = [head[0], head[1] + 1]
+                if(directionRef.current === "left") newHead = [head[0], head[1] - 1]
+                if(directionRef.current === "up") newHead = [head[0] - 1, head[1]]
+                if(directionRef.current === "down") newHead = [head[0] + 1, head[1]]
+                const nextTileOccupied = newHead[0] === row && newHead[1] === col
+                if (!isOccupied && !nextTileOccupied) {
                     emptyCells.push([row, col]);
                 }
             }
