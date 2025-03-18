@@ -40,8 +40,14 @@ apiRoutes.post("/signup", async(req, res) => {
         res.status(400).send({msg: "No username provided"})
         return
     }
-    if(await db.findUser(username) !== null){
-        res.status(400).send({msg: "Username already taken"})
+    try{
+        if(await db.findUser(username) !== null){
+            res.status(400).send({msg: "Username already taken"})
+            return
+        }
+    } catch(error){
+        res.status(500).send({msg: "Internal server error"})
+        console.error(error)
         return
     }
     const validatedUsername = validateUsername(username)
