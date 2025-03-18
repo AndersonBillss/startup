@@ -127,8 +127,16 @@ apiRoutes.put("/data", verifyUser, async(req, res) => {
         res.status(400).send({msg: "No data provided"})
         return
     }
-    const updated = await db.setUserData(req.user.username, req.body.data)
-    if(updated === false){
+    let updated
+    try{
+        await db.setUserData(req.user.username, req.body.data)
+        updated = req.body.data
+    } catch(error){
+        res.status(500).send({msg: "Internal server error"})
+        console.error(error)
+        return
+    }
+    if(!updated){
         res.status(400).send({msg: "Invalid user id provided"})
         return
     }
@@ -140,7 +148,14 @@ apiRoutes.get("/data", verifyUser, async(req, res) => {
 })
 
 apiRoutes.get("/getUsers", verifyUser, async(req, res) => {
-    const otherUsers = await db.getUsers([req.user])
+    let otherUsers
+    try{
+        otherUsers = await db.getUsers([req.user])
+    } catch(error){
+        res.status(500).send({msg: "Internal server error"})
+        console.error(error)
+        return
+    }
     res.send({data: otherUsers})
 })
 
@@ -155,12 +170,19 @@ apiRoutes.put("/attackUser", verifyUser, async(req, res) => {
         res.status(400).send({msg: "no target id specified"})
         return
     }
-    const targetUser = await db.findUser(target)
-    if(!targetUser){
-        res.status(400).send({msg: "Target user doesn't exist"})
+    let targetUser
+    try{
+        targetUser = await db.findUser(target)
+        await db.setUserData(targetUser.username, {
+            ...targetUser, 
+            soldiers: targetUser.soldiers - soldiers
+        })
+    } catch(error){
+        res.status(500).send({msg: "Internal server error"})
+        console.error(error)
         return
     }
-    targetUser.soldiers -= soldiers
+
 
     const otherUsers = await db.getUsers([req.user])
     res.send({data: otherUsers})
