@@ -74,7 +74,7 @@ apiRoutes.post("/signup", async(req, res) => {
         unlockedGames: [],
         soldiers: 0
     }
-    db.addUser(userSignupObject)
+    await db.addUser(userSignupObject)
     res.send({msg: "success"})
 })
 

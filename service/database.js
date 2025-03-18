@@ -148,17 +148,6 @@ function limitGetUserData(user){
     }
 }
 
-// const db = {
-//     addUser,
-//     setUserData,
-//     getUsers,
-//     findAuthorized,
-//     findUser,
-//     limitGetUserData,
-//     limitLoginUserData,
-//     deleteCookie
-// }//!
-
 module.exports = {
     addUser,
     setUserData,
