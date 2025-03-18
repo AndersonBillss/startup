@@ -40,7 +40,7 @@ apiRoutes.post("/signup", async(req, res) => {
         res.status(400).send({msg: "No username provided"})
         return
     }
-    if(await db.findUser(username) !== false){
+    if(await db.findUser(username) !== null){
         res.status(400).send({msg: "Username already taken"})
         return
     }
@@ -72,7 +72,8 @@ apiRoutes.post("/signup", async(req, res) => {
         kingdomName: kingdomName,
         kingdomImg: null,
         unlockedGames: [],
-        soldiers: 0
+        soldiers: 0,
+        token: null
     }
     try{
         await db.addUser(userSignupObject)
@@ -171,9 +172,15 @@ app.use((_req, res) => {
 
 
 function setAuthCookie(res, user) {
-    user.token = uuid();
-  
-    res.cookie('token', user.token, {
+    const token = uuid();
+    try{
+        db.setToken(user.username, token)
+    } catch(error){
+        res.status(500).send({msg: "Internal server error"})
+        console.error(error)
+        return
+    }
+    res.cookie('token', token, {
         secure: true,
         httpOnly: true,
         sameSite: 'strict',
@@ -184,7 +191,7 @@ function setAuthCookie(res, user) {
 async function verifyUser(req, res, next){
     const token = req.cookies["token"]
     const targetUser = await db.findAuthorized(token)
-    if(!targetUser){
+    if(targetUser === null){
         res.status(401).send({ msg: 'Unauthorized' });
         return
     }
@@ -194,7 +201,7 @@ async function verifyUser(req, res, next){
 
 function clearAuthCookie(res, user) {
     delete user.token;
-    db.deleteCookie(user.username)
+    db.deleteToken(user.username)
     res.clearCookie('token')
 }
 

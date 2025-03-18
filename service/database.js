@@ -76,16 +76,23 @@ const users = [ // Mock data
     },
 ]
 
-async function setUserData(username, data){
-    for(const user of users){
-        if(user.username === username){
-            for(const key of Object.keys(data)){
-                user[key] = data[key]
-            }
-            return user
-        }
+async function addUser(user){    
+    try {
+        await userCollection.insertOne(user);
+    } catch (error) {
+        throw error;
     }
-    return false
+}
+async function setUserData(username, data){
+    const user = {
+        ...data,
+        username: username
+    }
+    try{
+        return await userCollection.updateOne({ username: user.username }, { $set: user });
+    } catch(error){
+        throw error
+    }
 }
 
 async function findUser(username){
@@ -94,14 +101,6 @@ async function findUser(username){
     } catch(error){
         throw error
     }
-}
-async function findAuthorized(token){
-    for(const user of users){
-        if(user.token === token){
-            return user
-        }
-    }
-    return false
 }
 async function getUsers(excludedUsers){
     function userIncluded(targetUser, excludedUsers){
@@ -120,18 +119,24 @@ async function getUsers(excludedUsers){
     }
     return resultUsers
 }
-
-async function addUser(user){    
-    try {
-        await userCollection.insertOne(user);
-    } catch (error) {
-        throw error;
+async function findAuthorized(token){
+    if(token === null) return null
+    try{
+        return userCollection.findOne({ token });
+    } catch(error){
+        throw error
     }
 }
 
-async function deleteCookie(username){
-    const targetUser = await findUser(username);
-    targetUser.token = null
+async function setToken(username, token){
+    try{
+        return await userCollection.updateOne({ username: username }, { $set: { token: token } });
+    } catch(error){
+        throw error
+    }
+}
+async function deleteToken(username){
+    setToken(username, null)
 }
 
 function limitLoginUserData(user){
@@ -161,5 +166,6 @@ module.exports = {
     findUser,
     limitGetUserData,
     limitLoginUserData,
-    deleteCookie
+    setToken,
+    deleteToken
 }
