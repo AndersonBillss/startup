@@ -3,8 +3,10 @@ const { Router } = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const uuid = require('uuid').v4
-const bcrypt = require("bcrypt")
+const bcrypt = require('bcrypt')
+
 const db = require('./database.js')
+const peerProxy = require('./peerProxy.js')
 
 // Default port
 let port = 4000;
@@ -26,9 +28,10 @@ app.use(express.static('public'));
 const apiRoutes = Router();
 app.use('/api', apiRoutes);
 
-app.listen(port, () => {
+const httpServer = app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
+peerProxy(httpServer);
 
 apiRoutes.get("/ping", (_req, res) => {
     res.send({msg: "Api routes working"})

@@ -19,6 +19,16 @@ export async function sendAttack(playername, soldiers){
 let updatePlayersFunction = null
 let updateSoldiersFunction = null
 export const connectWebSocket = async() => { // Use a http request for now, but implement webSocket functionality when we get to that unit
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    const url = `${protocol}://${window.location.hostname}:4000`
+    const socket = new WebSocket(url);
+    socket.onopen = (e) => {
+        console.log("Connected to webSocket")
+        socket.send("HELLO?")
+    } 
+
+    console.log("Connecting to websocket:", url)
+
     const response = await fetch(`/api/getUsers`, {
         method: "GET",
         credentials: "include",
