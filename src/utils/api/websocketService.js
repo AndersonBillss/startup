@@ -1,5 +1,7 @@
 // Implement websocket logic here
 let connectedPlayers = null
+let socket = null
+let playername = ""
 export async function sendAttack(playername, soldiers){
     const response = await fetch(`api/attackUser`, {
         method: "PUT",
@@ -18,17 +20,22 @@ export async function sendAttack(playername, soldiers){
 
 let updatePlayersFunction = null
 let updateSoldiersFunction = null
-export const connectWebSocket = async() => { // Use a http request for now, but implement webSocket functionality when we get to that unit
+export const connectWebSocket = async(username) => {
+    playername = username
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
     const url = `${protocol}://${window.location.hostname}:4000`
-    const socket = new WebSocket(url);
-    socket.onopen = (e) => {
-        console.log("Connected to webSocket")
-        socket.send("HELLO?")
-    } 
+    socket = new WebSocket(url);
+    
+    socket.onmessage = (e) => {
+        const eventData = JSON.parse(e.data)
+        console.log("From websocket server:", eventData)
+        if(eventData.command == "updatePlayers" && updatePlayersFunction) updatePlayersFunction(eventData.players)
+        if(eventData.command == "recieveAttack" && updatePlayersFunction) updateSoldiersFunction(eventData.soldiers)
+    }
 
     console.log("Connecting to websocket:", url)
 
+    
     const response = await fetch(`/api/getUsers`, {
         method: "GET",
         credentials: "include",

@@ -52,13 +52,9 @@ const UserDataFetch = ({ setLoading }) => {
             }
             setLoading(false)
         })
-        connectWebSocket("http://localhost:3000/api")
-        connectRecieveAttack((numSoldiers) => {
-        let newNumSoldiers = playerData.soldiers - numSoldiers
-        if(newNumSoldiers < 0){
-            newNumSoldiers = 0
-        }
-        setNumSoldiers(newNumSoldiers)
+        connectWebSocket(playerData.username)
+        connectRecieveAttack((newData) => {
+            setPlayerDataState(newData)
         })
     },[])
 }

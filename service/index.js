@@ -6,7 +6,7 @@ const uuid = require('uuid').v4
 const bcrypt = require('bcrypt')
 
 const db = require('./database.js')
-const peerProxy = require('./peerProxy.js')
+const ws = require('./peerProxy.js')
 
 // Default port
 let port = 4000;
@@ -31,7 +31,7 @@ app.use('/api', apiRoutes);
 const httpServer = app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
-peerProxy(httpServer);
+ws.peerProxy(httpServer);
 
 apiRoutes.get("/ping", (_req, res) => {
     res.send({msg: "Api routes working"})
@@ -191,7 +191,7 @@ apiRoutes.put("/attackUser", verifyUser, async(req, res) => {
         console.error(error)
         return
     }
-
+    ws.updatePlayers(await db.getUsers([]))
 
     const otherUsers = await db.getUsers([req.user])
     res.send({data: otherUsers})

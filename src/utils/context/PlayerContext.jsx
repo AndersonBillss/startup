@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { getPlayerData, updatePlayerData } from "../api/playerDataService"
-import { setLoggedIn, loginUser, logoutUser, signupUser } from '../api/auth';
-import { connectRecieveAttack, connectWebSocket } from '../api/websocketService';
+import { updatePlayerData } from "../api/playerDataService"
+import { loginUser, logoutUser, signupUser } from '../api/auth';
 
 const PlayerContext = createContext(null)
 
@@ -66,8 +65,8 @@ export function PlayerStateProvider({ children }) {
           ...playerData, 
           kingdomImg: url,
         }).then(([success, newData]) => {
-        setPlayerDataState(newData)
-      })
+          setPlayerDataState(newData)
+        })
     }
 
     const setNumSoldiers = async(n) => {
