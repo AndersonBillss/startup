@@ -51,10 +51,13 @@ const UserDataFetch = ({ setLoading }) => {
                 setLoggedIn(false)
             }
             setLoading(false)
+            connectWebSocket(data.username)
         })
-        connectWebSocket(playerData.username)
         connectRecieveAttack((newData) => {
-            setPlayerDataState(newData)
+            setPlayerDataState({
+                ...
+                newData
+            })
         })
     },[])
 }

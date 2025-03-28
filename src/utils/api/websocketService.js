@@ -28,13 +28,8 @@ export const connectWebSocket = async(username) => {
     
     socket.onmessage = (e) => {
         const eventData = JSON.parse(e.data)
-        console.log("From websocket server:", eventData)
         if(eventData.command == "updatePlayers" && updatePlayersFunction) updatePlayersFunction(eventData.players)
-        if(eventData.command == "recieveAttack" && updatePlayersFunction) updateSoldiersFunction(eventData.soldiers)
     }
-
-    console.log("Connecting to websocket:", url)
-
     
     const response = await fetch(`/api/getUsers`, {
         method: "GET",
@@ -44,9 +39,21 @@ export const connectWebSocket = async(username) => {
     const responseJson = await response.json()
 
     connectedPlayers = responseJson.data
+    if(updatePlayersFunction) updatePlayersFunction(connectedPlayers)
 }
 export function connectUpdatePlayers(fn){
-    updatePlayersFunction = fn
+    updatePlayersFunction = (players) => {
+        if(!players) return
+        const limitedPlayers = []
+        players.forEach(player => {
+            if(player.username == playername){
+                updateSoldiersFunction(player)
+            } else {
+                limitedPlayers.push(player)
+            }
+        })
+        fn(limitedPlayers)
+    }
     updatePlayersFunction(connectedPlayers)
 }
 export function connectRecieveAttack(fn){
