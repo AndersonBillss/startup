@@ -149,6 +149,7 @@ apiRoutes.put("/data", verifyUser, async(req, res) => {
         res.status(400).send({msg: "Invalid user id provided"})
         return
     }
+    ws.updatePlayers(await db.getUsers([]))
     res.send({data: db.limitLoginUserData(updated)})
 })
 

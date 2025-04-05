@@ -7,10 +7,6 @@ function peerProxy(httpServer){
 
     wsServer.on("connection", (socket) => {
         socket.isAlive = true
-        
-        socket.on("message", data => {
-            console.log(data.toString("utf8"))
-        })
     })
 }
 
