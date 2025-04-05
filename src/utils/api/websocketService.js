@@ -18,7 +18,7 @@ export async function sendAttack(playername, soldiers){
     updatePlayersFunction(connectedPlayers)
 }
 
-let updatePlayersFunction = null
+let updatePlayersFunction = processPlayerUpdate
 let updateSoldiersFunction = null
 export const connectWebSocket = async(username) => {
     playername = username
@@ -42,20 +42,22 @@ export const connectWebSocket = async(username) => {
     if(updatePlayersFunction) updatePlayersFunction(connectedPlayers)
 }
 export function connectUpdatePlayers(fn){
-    updatePlayersFunction = (players) => {
-        if(!players) return
-        const limitedPlayers = []
-        players.forEach(player => {
-            if(player.username == playername){
-                updateSoldiersFunction(player)
-            } else {
-                limitedPlayers.push(player)
-            }
-        })
-        fn(limitedPlayers)
-    }
+    updatePlayersFunction = (players) => { fn(processPlayerUpdate(players)) }
     updatePlayersFunction(connectedPlayers)
 }
 export function connectRecieveAttack(fn){
     updateSoldiersFunction = fn
+}
+
+function processPlayerUpdate(players){
+    if(!players) return
+    const limitedPlayers = []
+    players.forEach(player => {
+        if(player.username == playername){
+            updateSoldiersFunction(player)
+        } else {
+            limitedPlayers.push(player)
+        }
+    })
+    return limitedPlayers;
 }

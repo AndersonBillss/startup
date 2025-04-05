@@ -7,13 +7,13 @@ const PlayerContext = createContext(null)
 // Use React's Context API to allow sharing of state
 export function PlayerStateProvider({ children }) {
     const [playerData, setPlayerDataState] = useState({
-      id: "",
       username: "",
       kingdomName: "",
       kingdomImg: null,
       unlockedGames: [],
       soldiers: 0
     })
+
     async function signup(username, password, kingdomName){
       try{
         const [success, msg] = await signupUser(username, password, kingdomName)
@@ -27,6 +27,7 @@ export function PlayerStateProvider({ children }) {
         return "Error occurred while signing up";
       }
     }
+
     async function login(username, password){
       try{
         const [success, data] = await loginUser(username, password);
@@ -46,6 +47,7 @@ export function PlayerStateProvider({ children }) {
         return false;
       }
     }
+
     async function unlockGame(game, price){
       if(playerData.soldiers - price < 0){
         return
@@ -59,6 +61,7 @@ export function PlayerStateProvider({ children }) {
         setPlayerDataState(newData)
       })
     }
+    
     async function setKingdomImg(url){
       updatePlayerData(
         {

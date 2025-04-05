@@ -40,7 +40,7 @@ const ProtectedRoute = ({ children }) => {
 };
 
 const UserDataFetch = ({ setLoading }) => {
-    const { setNumSoldiers, playerData, setPlayerDataState } = usePlayerData()
+    const { setPlayerDataState } = usePlayerData()
     
     useEffect(() => {
         getPlayerData().then(([success, data]) => {
@@ -52,11 +52,11 @@ const UserDataFetch = ({ setLoading }) => {
             }
             setLoading(false)
             connectWebSocket(data.username)
-        })
-        connectRecieveAttack((newData) => {
-            setPlayerDataState({
-                ...
-                newData
+            connectRecieveAttack((newData) => {
+                setPlayerDataState(prevPlayerData => ({
+                    ...prevPlayerData,
+                    soldiers: newData.soldiers
+                }))
             })
         })
     },[])
