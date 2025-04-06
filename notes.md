@@ -36,3 +36,7 @@ It's super cool to have a service connecting players. I feel like I really impro
 ## DB Notes
 
 This was an easier deliverable. I seperated functions that access/manipulate data into a seperate file. From there, it was just a matter of replacing functions with database versions one by one. It is really cool to be able to persist data like this because it will allow me to roll out updates without resetting user data.
+
+## WebSocket Notes
+
+It feels really good to have my application working seamlessly. Working on the WebSocket was very rewarding! And due to earlier planning, it was fairly straightforward to implement. Most of the work involved hosting the WebSocket on the server side, notifying other clients when their data changes. I am really happy to see all parts of my application working together well!

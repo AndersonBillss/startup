@@ -20,9 +20,8 @@ function peerProxy(httpServer){
     setInterval(() => {
         wsServer.clients.forEach(function each(client) {
         if (client.isAlive === false) return client.terminate();
-
-        client.isAlive = false;
-        client.send(JSON.stringify({command: "ping"}));
+            client.isAlive = false;
+            client.send(JSON.stringify({command: "ping"}));
         });
     }, 15000);
 }
