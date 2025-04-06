@@ -23,12 +23,16 @@ let updateSoldiersFunction = null
 export const connectWebSocket = async(username) => {
     playername = username
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    const url = `${protocol}://${window.location.hostname}:4000`
+    const port = window.location.port;
+    const url = `${protocol}://${window.location.hostname}:${port}/ws`
     socket = new WebSocket(url);
-    
+    socket.onerror = (error) => {
+        console.error("WebSocket error:", error);
+    };    
     socket.onmessage = (e) => {
         const eventData = JSON.parse(e.data)
         if(eventData.command == "updatePlayers" && updatePlayersFunction) updatePlayersFunction(eventData.players)
+        if(eventData.command == "ping") socket.send(JSON.stringify({message: "pong"}))
     }
     
     const response = await fetch(`/api/getUsers`, {
