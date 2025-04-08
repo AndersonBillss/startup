@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import '../../../styles.css'
 import './attack.css'
 import { usePlayerData } from "../../../utils/context/PlayerContext";
 import Navbar from "../../shared/nav/nav"
-import { connectUpdatePlayers, sendAttack } from "../../../utils/api/websocketService";
+import { sendAttack } from "../../../utils/api/websocketService";
 
 export default function Attack(){
-    const { numSoldiers, setNumSoldiers, username, } = usePlayerData()
-    const [players, setPlayers] = useState([])
-    useEffect(() => {
-        connectUpdatePlayers(setPlayers)
-    },[])
+    const { numSoldiers, setNumSoldiers, username, players } = usePlayerData()
+
 
     function attackPlayer(player){
         const attackAmount = Math.ceil(player.soldiers/2)

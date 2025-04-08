@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { updatePlayerData } from "../api/playerDataService"
 import { loginUser, logoutUser, signupUser } from '../api/auth';
+import { connectUpdatePlayers } from '../api/websocketService';
 
 const PlayerContext = createContext(null)
 
@@ -13,6 +14,10 @@ export function PlayerStateProvider({ children }) {
       unlockedGames: [],
       soldiers: 0
     })
+    const [players, setPlayers] = useState([])
+    useEffect(() => {
+        connectUpdatePlayers(setPlayers)
+    },[])
 
     async function signup(username, password, kingdomName){
       try{
@@ -93,7 +98,9 @@ export function PlayerStateProvider({ children }) {
         setKingdomImg,
         unlockGame,
         playerData,
-        setPlayerDataState
+        setPlayerDataState,
+
+        players
         }}>
         {children}
       </PlayerContext.Provider>
